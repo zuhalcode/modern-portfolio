@@ -2,110 +2,24 @@
 
 import React from "react";
 import { Button } from "../ui/button";
-import { ArrowDown, Dot } from "lucide-react";
-import StarIcon from "@/assets/star.svg";
-import HeroOrbit from "../ui/hero-orbit";
+import { ArrowDown } from "lucide-react";
 
 import MagicButton from "../ui/magic-button";
 
 import AnimatedHeading from "../ui/animated-heading";
 import AnimatedParagraph from "../ui/animated-paragraph";
 import { motion } from "framer-motion";
+import { Spotlight } from "../ui/spotlight";
+import OrbitAnimation from "../ui/orbit-animation";
 
 const HeroSection = () => {
   return (
     <div className="relative z-0 overflow-clip py-40 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
+      <Spotlight className="left-10 top-0 xl:-top-10" fill="darkblue" />
+      <Spotlight className="-left-12 -top-0 xl:-top-10" fill="gray" />
+
       {/* Orbit Animation */}
-      <div className="absolute inset-0 -z-20">
-        <div className="hero-ring size-[420px]" />
-        <div className="hero-ring size-[620px]" />
-        <div className="hero-ring size-[820px]" />
-        <div className="hero-ring size-[1020px]" />
-        <div className="hero-ring size-[1220px]" />
-
-        <HeroOrbit>
-          <StarIcon className="size-20 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={300} rotation={70}>
-          <StarIcon className="size-16 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={380} rotation={10}>
-          <StarIcon className="size-16 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={380} rotation={-50}>
-          <StarIcon className="size-12 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={380} rotation={150}>
-          <StarIcon className="size-12 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={750} rotation={70}>
-          <StarIcon className="size-20 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={750} rotation={-120}>
-          <StarIcon className="size-20 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={710} rotation={-160}>
-          <StarIcon className="size-14 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={710} rotation={10}>
-          <StarIcon className="size-14 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={780} rotation={-20}>
-          <StarIcon className="size-16 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={780} rotation={120}>
-          <StarIcon className="size-16 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={550} rotation={20}>
-          <StarIcon className="size-12 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={590} rotation={98}>
-          <StarIcon className="size-12 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={380} rotation={-14}>
-          <StarIcon className="size-4 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={380} rotation={79}>
-          <StarIcon className="size-5 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={530} rotation={178}>
-          <StarIcon className="size-10 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={710} rotation={144}>
-          <StarIcon className="size-3 text-emerald-300" />
-        </HeroOrbit>
-        <HeroOrbit size={420} rotation={240}>
-          <StarIcon className="size-12 text-emerald-300" />
-        </HeroOrbit>
-
-        <HeroOrbit size={400} rotation={110}>
-          <Dot className="size-28 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit size={750} rotation={40}>
-          <Dot className="size-28 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit size={650} rotation={260}>
-          <Dot className="size-32 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit size={600} rotation={210}>
-          <Dot className="size-24 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit size={550} rotation={-5}>
-          <Dot className="size-12 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit size={700} rotation={-40}>
-          <Dot className="size-12 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit size={700} rotation={130}>
-          <Dot className="size-14 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit size={550} rotation={150}>
-          <Dot className="size-12 text-emerald-300/20" />
-        </HeroOrbit>
-        <HeroOrbit size={850} rotation={100}>
-          <Dot className="size-16 text-emerald-300/20" />
-        </HeroOrbit>
-      </div>
+      <OrbitAnimation />
       {/* Orbit Animation */}
 
       <div className="container px-10">

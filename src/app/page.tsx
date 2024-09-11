@@ -1,3 +1,4 @@
+import About from "@/components/section/about";
 import Hero from "@/components/section/hero";
 import TapeSection from "@/components/section/tape";
 import ToolboxSection from "@/components/section/toolbox";
@@ -16,6 +17,7 @@ export default function Home() {
           desc="See how i transformed concepts into engaging digital experiences"
         />
         <ToolboxSection />
+        <About />
       </div>
     </main>
   );
