@@ -9,36 +9,48 @@ import {
 } from "@/components/ui/card";
 
 import StarIcon from "@/assets/star.svg";
+import FramerIcon from "@/assets/framer-icon.svg";
+import NextjsIcon from "@/assets/nextjs-icon.svg";
+import NestjsIcon from "@/assets/nestjs-icon.svg";
+import TsIcon from "@/assets/ts-icon.svg";
+import LaravelIcon from "@/assets/laravel-icon.svg";
+import ReactjsIcon from "@/assets/reactjs-icon.svg";
+import TailwindIcon from "@/assets/tailwind-icon.svg";
+import ReduxIcon from "@/assets/redux-icon.svg";
+import MysqlIcon from "@/assets/mysql-icon.svg";
+import PrismaIcon from "@/assets/prisma-icon.svg";
+import SwaggerIcon from "@/assets/swagger-icon.svg";
+import ShadcnIcon from "@/assets/shadcn-icon.svg";
+
 import ToolboxItems from "../ui/toolbox-items";
 
 const ToolboxSection = () => {
   const frontEndItems = [
-    { name: "ReactJS", icon: StarIcon },
-    { name: "NextJS", icon: StarIcon },
-    { name: "Framer Motion", icon: StarIcon },
-    { name: "TailwindCSS", icon: StarIcon },
-    { name: "ShadcnUI", icon: StarIcon },
-    { name: "Redux", icon: StarIcon },
-    { name: "React Query", icon: StarIcon },
+    { name: "ReactJS", icon: ReactjsIcon },
+    { name: "NextJS", icon: NextjsIcon },
+    { name: "Framer Motion", icon: FramerIcon },
+    { name: "TailwindCSS", icon: TailwindIcon },
+    { name: "ShadcnUI", icon: ShadcnIcon },
+    { name: "Redux", icon: ReduxIcon },
   ];
 
   const backEndItems = [
-    { name: "Prisma", icon: StarIcon },
-    { name: "MySQL", icon: StarIcon },
-    { name: "NestJS", icon: StarIcon },
-    { name: "TypeScript", icon: StarIcon },
-    { name: "Laravel", icon: StarIcon },
-    { name: "Swagger", icon: StarIcon },
+    { name: "Prisma", icon: PrismaIcon },
+    { name: "MySQL", icon: MysqlIcon },
+    { name: "NestJS", icon: NestjsIcon },
+    { name: "TypeScript", icon: TsIcon },
+    { name: "Laravel", icon: LaravelIcon },
+    { name: "Swagger", icon: SwaggerIcon },
   ];
   return (
     <div className="mx-auto flex items-center justify-center px-3 py-16">
-      <Card className="w-[350px] bg-gray-900">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-3">
+      <Card className="w-full bg-gray-800 sm:max-w-xl md:max-w-2xl">
+        <CardHeader className="flex items-center justify-center">
+          <CardTitle className="flex items-center justify-center gap-3">
             <StarIcon className="size-12 text-emerald-300" />
-            <span className="text-white">My Toolbox</span>
+            <span className="text-white">My Tech Stack</span>
           </CardTitle>
-          <CardDescription>
+          <CardDescription className="text-center text-white/60">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam,
             deserunt?
           </CardDescription>

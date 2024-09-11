@@ -2,7 +2,7 @@ const TechIcon = ({ component }: { component: React.ElementType }) => {
   const Component = component;
   return (
     <>
-      <Component className="size-8 fill-[url(#tech-icon-gradient)] text-emerald-300" />
+      <Component className="size-8 fill-[url(#tech-icon-gradient)]" />
       <svg className="absolute size-0">
         <defs>
           <linearGradient id="tech-icon-gradient">

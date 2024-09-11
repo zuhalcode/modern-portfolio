@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 
 import TechIcon from "./tech-icon";
-import { motion } from "framer-motion";
 
 type ToolboxItem = {
   name: string;

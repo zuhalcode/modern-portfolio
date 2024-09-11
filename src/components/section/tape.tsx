@@ -30,7 +30,7 @@ const TapeSection = () => {
             }}
             className="flex flex-none gap-4 py-3"
           >
-            {[...new Array(5)].fill(0).map((_, i) => (
+            {[...new Array(3)].fill(0).map((_, i) => (
               <Fragment key={i}>
                 {words.map((word) => (
                   <div key={word} className="inline-flex items-center gap-4">
