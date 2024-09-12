@@ -30,7 +30,7 @@ const HeroSection = () => {
           </div>
 
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <MagicButton>
+            <MagicButton animate>
               <span>Explore My Work</span>
               <ArrowDown size={16} />
             </MagicButton>

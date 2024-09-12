@@ -397,10 +397,10 @@ export function GridGlobe() {
   ];
 
   return (
-    <div className="relative -top-10 h-32 sm:h-64">
+    <div className="relative -top-10 h-32 sm:h-64 md:-top-32">
       <div className="relative mx-auto h-96 w-full max-w-7xl overflow-hidden px-4">
-        <div className="pointer-events-none absolute inset-x-0 bottom-10 z-10 h-60 w-full select-none bg-gradient-to-b from-transparent to-white/60 sm:bottom-24 sm:h-40 md:h-24" />
-        <div className="absolute inset-0 z-10 h-full sm:inset-auto sm:left-0 sm:right-0 md:top-10">
+        <div className="pointer-events-none absolute inset-x-0 bottom-10 z-10 h-60 w-full select-none bg-gradient-to-b from-transparent to-white/60 sm:bottom-16 sm:h-40 md:h-24 lg:-bottom-10" />
+        <div className="absolute inset-0 z-10 h-full sm:inset-auto sm:left-0 sm:right-0 md:top-28">
           <World data={sampleArcs} globeConfig={globeConfig} />
         </div>
       </div>
