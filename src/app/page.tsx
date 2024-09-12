@@ -17,6 +17,11 @@ export default function Home() {
           desc="See how i transformed concepts into engaging digital experiences"
         />
         <ToolboxSection />
+        <SectionHeader
+          title="Featured Projects"
+          eyebrow="Real-world Results"
+          desc="See how i transformed concepts into engaging digital experiences"
+        />
         <About />
       </div>
     </main>
