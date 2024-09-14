@@ -1,8 +1,16 @@
-const TechIcon = ({ component }: { component: React.ElementType }) => {
+const TechIcon = ({
+  component,
+  customSizeClassName = "size-8",
+}: {
+  component: React.ElementType;
+  customSizeClassName?: string;
+}) => {
   const Component = component;
   return (
     <>
-      <Component className="size-8 fill-[url(#tech-icon-gradient)]" />
+      <Component
+        className={`${customSizeClassName} fill-[url(#tech-icon-gradient)]`}
+      />
       <svg className="absolute size-0">
         <defs>
           <linearGradient id="tech-icon-gradient">

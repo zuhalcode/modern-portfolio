@@ -20,6 +20,8 @@ export default function Home() {
         <Hero />
         <TapeSection />
 
+        <PersonalSection />
+
         <SectionHeader
           title="Featured Projects"
           eyebrow="Real-world Results"
@@ -32,14 +34,6 @@ export default function Home() {
           eyebrow="Real-world Results"
           desc="See how i transformed concepts into engaging digital experiences"
         />
-        <PersonalSection />
-
-        <SectionHeader
-          title="Featured Projects"
-          eyebrow="Real-world Results"
-          desc="See how i transformed concepts into engaging digital experiences"
-        />
-        <About />
 
         <Project />
 

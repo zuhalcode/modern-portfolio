@@ -6,6 +6,7 @@ import { Download } from "lucide-react";
 import Socials from "../ui/socials";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { TypeAnimation } from "react-type-animation";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -16,24 +17,37 @@ const jetBrainsMono = JetBrains_Mono({
 const PersonalSection = () => {
   return (
     <section className={`${jetBrainsMono.className} w-full py-16`}>
-      <div className="flex flex-col items-center justify-between gap-6 xl:flex-row">
-        <div className="order-2 space-y-6 text-center xl:order-1">
-          <span className="font-semibold">Website Developer</span>
-          <h1 className="text-5xl">
-            Hi I'm
+      <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:justify-between lg:px-14 xl:px-32">
+        <div className="order-2 space-y-6 text-center lg:order-1 lg:text-start">
+          <h1 className="text-3xl">
+            <span className="ml-3">Hello I'm</span>
             <br />
-            <span className="text-green-400">
-              Mohammad Dzakiyyul Ashfiya' El Arif
-            </span>
+            <div className="px-3 pt-3">
+              <span className="text-emerald-300">
+                <TypeAnimation
+                  sequence={[
+                    // Same substring at the start will only be typed out once, initially
+                    "Mohammad Dzakiyyul Ashfiya' El Arif",
+                    2000, // wait 1s before replacing "Mice" with "Hamsters"
+                    "Website Developer",
+                    2000,
+                  ]}
+                  wrapper="span"
+                  speed={10}
+                  repeat={Infinity}
+                  className="text-2xl font-bold"
+                />
+              </span>
+            </div>
           </h1>
-          <p className="">
+          <p className="max-w-md px-3">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae,
             repellendus qui nemo itaque sint nostrum nulla possimus deserunt
             praesentium a!
           </p>
 
           {/* Socials */}
-          <div className="flex flex-col items-center justify-center gap-6">
+          <div className="flex flex-col items-center justify-center gap-6 lg:ml-3 lg:items-start lg:justify-start">
             <Button
               variant="outline"
               size="lg"
@@ -51,7 +65,7 @@ const PersonalSection = () => {
         </div>
 
         {/* Personal Image */}
-        <div className="order-1 xl:order-2">
+        <div className="order-1 lg:order-2">
           <div className="relative h-full w-full rounded-full">
             {/* Image */}
             <motion.div
@@ -85,7 +99,7 @@ const PersonalSection = () => {
               <motion.circle
                 cx="253"
                 cy="253"
-                stroke="#00ff99"
+                stroke="rgb(110 231 183)"
                 r="250"
                 strokeWidth="4"
                 strokeLinecap="round"

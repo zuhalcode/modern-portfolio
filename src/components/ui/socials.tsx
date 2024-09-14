@@ -13,7 +13,7 @@ const Socials = () => {
         <Link
           key={i}
           href={item.url}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-green-400 p-2 text-green-400 transition-all duration-500 hover:bg-green-400 hover:text-black/80"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-emerald-300 p-2 text-emerald-300 transition-all duration-500 hover:bg-emerald-300 hover:text-black/80"
         >
           <item.icon />
         </Link>
