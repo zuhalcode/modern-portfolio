@@ -8,7 +8,7 @@ import TechIcon from "../ui/tech-icon";
 const Footer = () => {
   return (
     <footer className="relative w-full pt-20">
-      <div className="absolute left-0 top-0 -z-10 min-h-96 w-full">
+      <div className="absolute left-0 top-0 -z-10 min-h-96 w-full sm:-top-32">
         <img
           src="/footer-grid.svg"
           alt="footer-grid"
@@ -17,13 +17,13 @@ const Footer = () => {
       </div>
 
       <div className="flex flex-col items-center">
-        <h1 className="text-center text-3xl font-bold">
+        <h1 className="max-w-xs text-center text-3xl font-bold sm:max-w-xl">
           Ready to take <span className="text-purple-300">your</span> digital
           presence to the next level ?
         </h1>
         <p className="my-5 text-center text-white">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui,
-          eligendi?
+          I’m always excited to collaborate on new ideas. Let’s build something
+          amazing together
         </p>
         <a href="mailto:zuhalcode@gmail.com">
           <MagicButton animate>
@@ -35,7 +35,7 @@ const Footer = () => {
 
       <div className="mt-16 flex flex-col items-center justify-between gap-3 bg-black/60 py-2 xl:flex-row xl:px-10">
         <p className="text-sm">Copyright &copy; 2024 | Developed by Zuhal</p>
-        <div className="flex items-center gap-3">
+        {/* <div className="flex items-center gap-3">
           {portfolios[1].iconLists.map((icon, i) => (
             <div
               key={i}
@@ -44,7 +44,7 @@ const Footer = () => {
               <TechIcon component={icon} />
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </footer>
   );

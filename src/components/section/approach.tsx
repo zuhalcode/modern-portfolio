@@ -11,7 +11,7 @@ const ApproachSection = () => {
         <Card
           title="Planning & Strategy"
           icon={<AceternityIcon order="Phase 1" />}
-          desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure harum magnam sit distinctio eum officiis aspernatur quae dignissimos ut debitis!"
+          desc="I begin by understanding your unique goals and challenges. Through research and collaboration, we develop a strategic roadmap that aligns with your vision and sets the foundation for success"
         >
           <CanvasRevealEffect
             animationSpeed={5.1}
@@ -20,9 +20,9 @@ const ApproachSection = () => {
         </Card>
 
         <Card
-          title="Nisha is Munni"
+          title="Design & Development"
           icon={<AceternityIcon order="Phase 2" />}
-          desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure harum magnam sit distinctio eum officiis aspernatur quae dignissimos ut debitis!"
+          desc="Turning ideas into visually engaging and functional designs. With a focus on user experience, I build solutions that not only look great but perform seamlessly across platforms."
         >
           <CanvasRevealEffect
             animationSpeed={3}
@@ -32,9 +32,9 @@ const ApproachSection = () => {
         </Card>
 
         <Card
-          title="Munni is Aditi"
+          title="Launch & Iterate"
           icon={<AceternityIcon order="Phase 3" />}
-          desc="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure harum magnam sit distinctio eum officiis aspernatur quae dignissimos ut debitis!"
+          desc="Once project is live, the work doesn’t stop. I analyze performance, gather feedback, and continuously optimize to ensure long-term success and adaptability in an evolving digital landscape"
         >
           <CanvasRevealEffect
             animationSpeed={4}
