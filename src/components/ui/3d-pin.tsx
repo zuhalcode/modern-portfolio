@@ -78,14 +78,14 @@ export const PinPerspective = ({
 }) => {
   return (
     <motion.div className="pointer-events-none z-[60] flex h-80 w-full items-center justify-center opacity-0 transition duration-500 group-hover/pin:opacity-100">
-      <div className="inset-0 -mt-7 h-full w-full flex-none">
+      <div className="inset-0 -mt-7 h-full w-40 flex-none">
         <div className="absolute inset-x-0 top-0 flex justify-center">
           <a
             href={href}
             target={"_blank"}
             className="relative z-10 flex items-center space-x-2 rounded-full bg-zinc-950 px-4 py-0.5 ring-1 ring-white/10"
           >
-            <span className="relative z-20 inline-block py-0.5 text-xs font-bold text-white">
+            <span className="relative z-20 inline-block py-0.5 text-center text-xs font-bold text-white">
               {title}
             </span>
 

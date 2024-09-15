@@ -16,7 +16,7 @@ const jetBrainsMono = JetBrains_Mono({
 
 const PersonalSection = () => {
   return (
-    <section className={`${jetBrainsMono.className} w-full py-16`}>
+    <section className={`${jetBrainsMono.className} w-full pb-40 pt-16`}>
       <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:justify-between lg:px-14 xl:px-32">
         <div className="order-2 space-y-6 text-center lg:order-1 lg:text-start">
           <h1 className="text-3xl">
@@ -26,9 +26,10 @@ const PersonalSection = () => {
               <span className="text-emerald-300">
                 <TypeAnimation
                   sequence={[
-                    // Same substring at the start will only be typed out once, initially
+                    "Zuhal",
+                    2000,
                     "Mohammad Dzakiyyul Ashfiya' El Arif",
-                    2000, // wait 1s before replacing "Mice" with "Hamsters"
+                    2000,
                     "Website Developer",
                     2000,
                   ]}
@@ -40,10 +41,11 @@ const PersonalSection = () => {
               </span>
             </div>
           </h1>
-          <p className="max-w-md px-3">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae,
-            repellendus qui nemo itaque sint nostrum nulla possimus deserunt
-            praesentium a!
+          <p className="max-w-lg px-3 text-justify text-sm leading-relaxed">
+            Individual with a strong passion for Website Development. Developing
+            various projects using JavaScript frameworks such as ReactJS,
+            NextJS, and NestJS, integrated with TailwindCSS to build modern,
+            efficient, and scalable web applications.
           </p>
 
           {/* Socials */}

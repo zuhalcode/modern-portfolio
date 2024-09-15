@@ -43,7 +43,7 @@ const ToolboxSection = () => {
     { name: "Swagger", icon: SwaggerIcon },
   ];
   return (
-    <div className="mx-auto flex items-center justify-center px-3 py-16">
+    <div className="mx-auto flex items-center justify-center px-3 pb-40 pt-16">
       <Card className="w-full bg-gray-800 sm:max-w-xl md:max-w-2xl">
         <CardHeader className="flex items-center justify-center">
           <CardTitle className="flex items-center justify-center gap-3">

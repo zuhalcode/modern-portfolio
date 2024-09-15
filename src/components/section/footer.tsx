@@ -2,7 +2,7 @@
 import React from "react";
 import MagicButton from "../ui/magic-button";
 import { MousePointer2 } from "lucide-react";
-import { portfolios } from "@/data/portfolio";
+
 import TechIcon from "../ui/tech-icon";
 
 const Footer = () => {
