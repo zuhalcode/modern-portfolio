@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const ProjectSection = () => {
   return (
-    <div className="py-16">
+    <div className="pb-44 pt-16">
       <div className="flex flex-wrap items-center justify-center gap-10 sm:gap-10 md:gap-24 xl:gap-16">
         {portfolios.map((item, i) => (
           <div

@@ -50,12 +50,15 @@ const config: Config = {
           foreground: "hsl(var(--popover-foreground))",
         },
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#172A3A",
+          second: "#001919",
+          third: "#F5D3C8",
+          fourth: "#00FDB6",
+          fifth: "#E07A5F",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "rgb(17 24 39)",
+          second: "rgb(110 231 183)",
         },
         muted: {
           DEFAULT: "hsl(var(--muted))",

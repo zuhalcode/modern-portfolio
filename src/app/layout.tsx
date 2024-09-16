@@ -16,12 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="!scroll-smooth">
       <body
         className={twMerge(
           inter.variable,
           calistoga.variable,
-          "bg-gray-900 font-sans text-white",
+          "bg-secondary font-sans text-white",
         )}
       >
         {children}

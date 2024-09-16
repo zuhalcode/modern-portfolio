@@ -4,9 +4,11 @@ import { JetBrains_Mono } from "next/font/google";
 import { Button } from "../ui/button";
 import { Download } from "lucide-react";
 import Socials from "../ui/socials";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { TypeAnimation } from "react-type-animation";
+import Link from "next/link";
+import { useRef } from "react";
 
 const jetBrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -15,15 +17,28 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 const PersonalSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+
   return (
-    <section className={`${jetBrainsMono.className} w-full pb-40 pt-16`}>
+    <section
+      ref={ref}
+      className={`${jetBrainsMono.className} w-full pb-40 pt-16`}
+      id="about"
+    >
       <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:justify-between lg:px-14 xl:px-32">
-        <div className="order-2 space-y-6 text-center lg:order-1 lg:text-start">
+        {/* About Me */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="order-2 space-y-6 text-center lg:order-1 lg:text-start"
+        >
           <h1 className="text-3xl">
             <span className="ml-3">Hello I'm</span>
             <br />
             <div className="px-3 pt-3">
-              <span className="text-emerald-300">
+              <span className="text-primary-fourth">
                 <TypeAnimation
                   sequence={[
                     "Zuhal",
@@ -50,24 +65,32 @@ const PersonalSection = () => {
 
           {/* Socials */}
           <div className="flex flex-col items-center justify-center gap-6 lg:ml-3 lg:items-start lg:justify-start">
-            <Button
-              variant="outline"
-              size="lg"
-              className="flex items-center gap-2 bg-gray-900 uppercase"
-            >
-              <span>Download CV</span>
-              <Download />
-            </Button>
+            <Link href="">
+              <Button
+                variant="outline"
+                size="lg"
+                className="flex items-center gap-2 uppercase"
+              >
+                <span>Download CV</span>
+                <Download />
+              </Button>
+            </Link>
 
             <div className="">
               <Socials />
             </div>
           </div>
           {/* Socials */}
-        </div>
+        </motion.div>
+        {/* About Me */}
 
         {/* Personal Image */}
-        <div className="order-1 lg:order-2">
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={isInView ? { opacity: 1, x: 0 } : {}}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.5 }}
+          className="order-1 lg:order-2"
+        >
           <div className="relative h-full w-full rounded-full">
             {/* Image */}
             <motion.div
@@ -101,7 +124,7 @@ const PersonalSection = () => {
               <motion.circle
                 cx="253"
                 cy="253"
-                stroke="rgb(110 231 183)"
+                stroke="#00FDB6"
                 r="250"
                 strokeWidth="4"
                 strokeLinecap="round"
@@ -123,7 +146,7 @@ const PersonalSection = () => {
               />
             </motion.svg>
           </div>
-        </div>
+        </motion.div>
         {/* Personal Image */}
       </div>
     </section>

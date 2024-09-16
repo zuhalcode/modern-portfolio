@@ -9,22 +9,24 @@ const ExperienceSection = () => {
         {experiences.map((exp) => (
           <Button
             key={exp.id}
-            className="flex-1 border-neutral-200 text-white"
+            className="maxw flex-1 border-neutral-200 text-white"
             duration={Math.floor(Math.random() * 1000) + 5000}
           >
             <div className="flex flex-col items-center justify-center gap-2 p-3 py-6 md:flex-row md:items-start md:gap-10 md:px-10">
-              <img
-                src="/exp1.svg"
-                alt="exp1"
-                className="w-16 md:w-20 lg:w-28"
-              />
-              <div>
-                <h1 className="text-center text-xl font-bold sm:text-start">
-                  {exp.title}
-                </h1>
-                <p className="mt-3 text-center font-semibold sm:text-start">
-                  {exp.desc}
-                </p>
+              <div className="flex flex-col items-center gap-5 md:flex-row">
+                <img
+                  src="/exp1.svg"
+                  alt="exp1"
+                  className="w-16 md:w-20 lg:w-28"
+                />
+                <div className="flex flex-col">
+                  <h1 className="text-center text-xl font-bold sm:text-start">
+                    {exp.title}
+                  </h1>
+                  <p className="mt-3 text-center font-semibold sm:text-start">
+                    {exp.desc}
+                  </p>
+                </div>
               </div>
             </div>
           </Button>

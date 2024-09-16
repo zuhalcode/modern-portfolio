@@ -1,4 +1,3 @@
-import About from "@/components/section/about";
 import ApproachSection from "@/components/section/approach";
 import ExperienceSection from "@/components/section/experience";
 import Footer from "@/components/section/footer";
@@ -7,9 +6,7 @@ import PersonalSection from "@/components/section/personal";
 import Project from "@/components/section/project";
 import TapeSection from "@/components/section/tape";
 import ToolboxSection from "@/components/section/toolbox";
-import PageTransition from "@/components/ui/page-transition";
 import SectionHeader from "@/components/ui/section-header";
-import StairTransition from "@/components/ui/stair-transition";
 
 export default function Home() {
   return (
@@ -35,12 +32,12 @@ export default function Home() {
         />
         <Project />
 
-        <SectionHeader
+        {/* <SectionHeader
           eyebrow="Dedicated To Excellence"
           title="Delivering Value Through Experience"
           desc="A proven history of delivering successful digital projects, leveraging experience to create meaningful and impactful solutions"
         />
-        <ExperienceSection />
+        <ExperienceSection /> */}
 
         <SectionHeader
           eyebrow="From Concept to Reality"

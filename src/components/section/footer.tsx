@@ -3,8 +3,6 @@ import React from "react";
 import MagicButton from "../ui/magic-button";
 import { MousePointer2 } from "lucide-react";
 
-import TechIcon from "../ui/tech-icon";
-
 const Footer = () => {
   return (
     <footer className="relative w-full pt-20">
@@ -18,8 +16,8 @@ const Footer = () => {
 
       <div className="flex flex-col items-center">
         <h1 className="max-w-xs text-center text-3xl font-bold sm:max-w-xl">
-          Ready to take <span className="text-purple-300">your</span> digital
-          presence to the next level ?
+          Ready to take <span className="text-primary-fourth">your </span>
+          digital presence to the next level ?
         </h1>
         <p className="my-5 text-center text-white">
           I’m always excited to collaborate on new ideas. Let’s build something

@@ -35,7 +35,7 @@ const AnimatedParagraph = ({ text, isInView = true, delay = 0.8 }: Props) => {
             hidden: { opacity: 0 },
             visible: { opacity: 1 },
           }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         >
           {word}
         </motion.span>

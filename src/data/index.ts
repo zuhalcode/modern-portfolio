@@ -30,7 +30,6 @@ export const portfolios = [
       ReduxIcon,
       FramerIcon,
       ShadcnIcon,
-      NestjsIcon,
       PrismaIcon,
     ],
     nameBtn: "Live Site",

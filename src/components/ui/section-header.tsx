@@ -16,7 +16,7 @@ const SectionHeader = ({ title, eyebrow, desc }: Props) => {
           initial={{ opacity: 0, x: 50 }}
           animate={isInView ? { opacity: 1, x: 0 } : {}}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="bg-gradient-to-r from-emerald-300 to-sky-400 bg-clip-text text-center font-semibold uppercase tracking-widest text-transparent"
+          className="bg-gradient-to-r from-[#00FDB6] to-sky-400 bg-clip-text text-center font-semibold uppercase tracking-widest text-transparent"
         >
           {eyebrow}
         </motion.p>

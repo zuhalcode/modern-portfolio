@@ -44,10 +44,10 @@ const ToolboxSection = () => {
   ];
   return (
     <div className="mx-auto flex items-center justify-center px-3 pb-40 pt-16">
-      <Card className="w-full bg-gray-800 sm:max-w-xl md:max-w-2xl">
+      <Card className="w-full bg-primary/80 sm:max-w-xl md:max-w-2xl">
         <CardHeader className="flex items-center justify-center">
           <CardTitle className="flex items-center justify-center gap-3">
-            <StarIcon className="size-12 text-emerald-300" />
+            <StarIcon className="text-primary-fourth size-12" />
             <span className="text-white">My Tech Stack</span>
           </CardTitle>
           <CardDescription className="text-center text-white/60">
