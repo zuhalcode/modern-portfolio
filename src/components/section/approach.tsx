@@ -15,7 +15,8 @@ const ApproachSection = () => {
         >
           <CanvasRevealEffect
             animationSpeed={5.1}
-            containerClassName="bg-emerald-900"
+            containerClassName="bg-sky-600"
+            colors={[[125, 211, 252]]}
           />
         </Card>
 
@@ -38,8 +39,7 @@ const ApproachSection = () => {
         >
           <CanvasRevealEffect
             animationSpeed={4}
-            containerClassName="bg-sky-600"
-            colors={[[125, 211, 252]]}
+            containerClassName="bg-emerald-900"
           />
         </Card>
       </section>
