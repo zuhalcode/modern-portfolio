@@ -32,7 +32,9 @@ const Footer = () => {
       </div>
 
       <div className="mt-16 flex flex-col items-center justify-between gap-3 bg-black/60 py-2 xl:flex-row xl:px-10">
-        <p className="text-sm">Copyright &copy; 2024 | Developed by Zuhal</p>
+        <p className="text-sm">
+          Copyright &copy; 2024 | Developed by Zuhal. All Rights Reserved.
+        </p>
         {/* <div className="flex items-center gap-3">
           {portfolios[1].iconLists.map((icon, i) => (
             <div
