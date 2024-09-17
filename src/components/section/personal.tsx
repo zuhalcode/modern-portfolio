@@ -65,7 +65,7 @@ const PersonalSection = () => {
 
           {/* Socials */}
           <div className="flex flex-col items-center justify-center gap-6 lg:ml-3 lg:items-start lg:justify-start">
-            <Link href="">
+            <Link href="cv.pdf" target="_blank">
               <Button
                 variant="outline"
                 size="lg"
