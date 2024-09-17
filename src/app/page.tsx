@@ -9,7 +9,7 @@ import SectionHeader from "@/components/ui/section-header";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "My Portfolio",
+  title: "Portfolio | Mohammad Dzakiyyul",
 };
 
 export default function Home() {
