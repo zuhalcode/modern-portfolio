@@ -1,5 +1,4 @@
 import ApproachSection from "@/components/section/approach";
-import ExperienceSection from "@/components/section/experience";
 import Footer from "@/components/section/footer";
 import Hero from "@/components/section/hero";
 import PersonalSection from "@/components/section/personal";
@@ -7,6 +6,11 @@ import Project from "@/components/section/project";
 import TapeSection from "@/components/section/tape";
 import ToolboxSection from "@/components/section/toolbox";
 import SectionHeader from "@/components/ui/section-header";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "My Portfolio",
+};
 
 export default function Home() {
   return (
