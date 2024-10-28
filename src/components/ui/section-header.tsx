@@ -9,6 +9,7 @@ type Props = { title?: string; eyebrow?: string; desc: string };
 const SectionHeader = ({ title, eyebrow, desc }: Props) => {
   const ref = useRef(null);
   const isInView = useInView(ref);
+
   return (
     <>
       <motion.div ref={ref} className="flex flex-col justify-center gap-3 px-3">
