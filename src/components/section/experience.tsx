@@ -9,7 +9,7 @@ const ExperienceSection = () => {
         {experiences.map((exp) => (
           <Button
             key={exp.id}
-            className="maxw flex-1 border-neutral-200 text-white"
+            className="flex-1 border-neutral-200 text-white"
             duration={Math.floor(Math.random() * 1000) + 5000}
           >
             <div className="flex flex-col items-center justify-center gap-2 p-3 py-6 md:flex-row md:items-start md:gap-10 md:px-10">

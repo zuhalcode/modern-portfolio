@@ -5,6 +5,7 @@ import Image from "next/image";
 
 import { Playfair_Display } from "next/font/google";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 const playfair = Playfair_Display({
   weight: ["400", "500", "600", "700", "800", "900"],
@@ -80,11 +81,19 @@ const TheQatarAnimation = () => {
         <QatarImage src="/qatar-img/qatar4.jpg" width={550} height={400} />
         <QatarImage src="/qatar-img/qatar5.jpg" width={300} height={300} />
       </div>
+
+      <div className="flex h-screen w-full items-center justify-center gap-[1px]">
+        <DestinationImage src="/qatar-img/destination2.jpg" />
+        <DestinationImage src="/qatar-img/destination.jpg" />
+        <DestinationImage src="/qatar-img/destination3.jpg" />
+        <DestinationImage src="/qatar-img/destination4.jpg" />
+        <DestinationImage src="/qatar-img/destination5.jpg" index={4} />
+      </div>
     </main>
   );
 };
 
-export const QatarImage = ({
+const QatarImage = ({
   width = 300,
   height = 300,
   src,
@@ -120,6 +129,38 @@ export const QatarImage = ({
         />
       </motion.div>
     </div>
+  );
+};
+
+const DestinationImage = ({
+  src,
+  className,
+  index,
+}: {
+  src: string;
+  className?: string;
+  index?: number;
+}) => {
+  const { scrollY } = useScroll();
+  const translateY = useTransform(scrollY, [0, 500], [0, -30]);
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: false });
+
+  return (
+    <motion.div
+      whileHover={{ flex: 3 }}
+      transition={{ duration: 0.5, ease: "easeIn" }}
+      className={`relative h-screen ${index === 4 ? "flex-[3]" : "flex-1"}`}
+    >
+      <Image
+        src={src}
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
+        alt=""
+        className={cn("object-cover", className)}
+      />
+    </motion.div>
   );
 };
 

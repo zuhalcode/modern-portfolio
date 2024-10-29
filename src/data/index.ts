@@ -68,8 +68,17 @@ export const experiences = [
   {
     id: 1,
     title: "Frontend Engineer Intern",
-    desc: "Assisted in the development of a web-based platform using React.js, enhancing interactivity.",
+    time: "Feb 2023 - Jul 2023",
+    desc: "Assisted in the development of a web-based platform using Laravel, enhancing interactivity.",
     className: "md:col-span-2",
     img: exp1,
   },
+  // {
+  //   id: 2,
+  //   title: "Self Employed",
+  //   time: "Jul 2024 - Present",
+  //   desc: "Assisted in the development of a web-based platform using Laravel, enhancing interactivity.",
+  //   className: "md:col-span-2",
+  //   img: exp1,
+  // },
 ];

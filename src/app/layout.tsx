@@ -2,6 +2,7 @@ import { twMerge } from "tailwind-merge";
 import "./globals.css";
 
 import { Calistoga, Inter } from "next/font/google";
+import ClientLayout from "@/components/layout/client-layout";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const calistoga = Calistoga({
@@ -24,7 +25,7 @@ export default function RootLayout({
           "bg-secondary font-sans text-white",
         )}
       >
-        {children}
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );

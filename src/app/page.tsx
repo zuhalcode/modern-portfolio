@@ -1,4 +1,5 @@
 import ApproachSection from "@/components/section/approach";
+import ExperienceSection from "@/components/section/experience";
 import Footer from "@/components/section/footer";
 import Hero from "@/components/section/hero";
 import PersonalSection from "@/components/section/personal";
@@ -36,12 +37,12 @@ export default function Home() {
         />
         <Project />
 
-        {/* <SectionHeader
+        <SectionHeader
           eyebrow="Dedicated To Excellence"
           title="Delivering Value Through Experience"
           desc="A proven history of delivering successful digital projects, leveraging experience to create meaningful and impactful solutions"
         />
-        <ExperienceSection /> */}
+        <ExperienceSection />
 
         <SectionHeader
           eyebrow="From Concept to Reality"
