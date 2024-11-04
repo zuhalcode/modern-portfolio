@@ -1,17 +1,12 @@
 "use client";
 
 import { animationData } from "@/data/animation-data";
-import { useParams, useRouter } from "next/navigation";
-import React, { useEffect } from "react";
 
-type Animation = {
-  label: string;
-  component: React.ReactNode;
-};
+interface AnimationPageProps {
+  params: { id: string };
+}
 
-const Page = () => {
-  const { id } = useParams();
-
+const AnimationPage = ({ params: { id } }: AnimationPageProps) => {
   const animation = animationData.find(({ label }) => label === id);
 
   const NotFoundComponent = () => (
@@ -23,4 +18,4 @@ const Page = () => {
   return animation ? animation.component : <NotFoundComponent />;
 };
 
-export default Page;
+export default AnimationPage;

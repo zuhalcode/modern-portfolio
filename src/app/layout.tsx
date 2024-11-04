@@ -1,8 +1,8 @@
+import { Metadata } from "next";
 import { twMerge } from "tailwind-merge";
 import "./globals.css";
 
 import { Calistoga, Inter } from "next/font/google";
-import ClientLayout from "@/components/layout/client-layout";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const calistoga = Calistoga({
@@ -11,13 +11,19 @@ const calistoga = Calistoga({
   variable: "--font-serif",
 });
 
+export const metadata: Metadata = {
+  title: { default: "Web Developer", template: "%s - Web Developer" },
+  description:
+    "A passionate Web Developer, specialized in JavaScript. developing modern and scalable website using NextJS, NestJS, and TailwindCSS for responsive design",
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="!scroll-smooth">
+    <html lang="en">
       <body
         className={twMerge(
           inter.variable,
@@ -25,7 +31,7 @@ export default function RootLayout({
           "bg-secondary font-sans text-white",
         )}
       >
-        <ClientLayout>{children}</ClientLayout>
+        {children}
       </body>
     </html>
   );

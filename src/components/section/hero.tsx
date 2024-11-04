@@ -32,8 +32,8 @@ const HeroSection = () => {
       <div className="container px-10">
         <div className="flex flex-col gap-3">
           <div className="mx-auto flex max-w-sm flex-col items-center gap-3 lg:max-w-2xl">
-            <AnimatedHeading text="Crafting Exceptional Web Solutions" />
-            <AnimatedParagraph text="I create functional web applications that deliver results. Let's discuss your next project" />
+            <AnimatedHeading text="Crafting Digital Experiences " />
+            <AnimatedParagraph text="I develop functional web applications that not only look great but also deliver real results. Let's build something amazing together." />
           </div>
 
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
