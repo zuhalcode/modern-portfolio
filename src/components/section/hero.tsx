@@ -21,7 +21,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="relative z-0 overflow-clip py-40 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
+    <div className="relative z-0 overflow-clip py-36 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
       <Spotlight className="left-10 top-0 xl:-top-10" fill="darkblue" />
       <Spotlight className="-left-12 -top-0 xl:-top-10" fill="gray" />
 
