@@ -9,10 +9,6 @@ import ToolboxSection from "@/components/section/toolbox";
 import SectionHeader from "@/components/ui/section-header";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "Portfolio | Mohammad Dzakiyyul",
-};
-
 export default function Home() {
   return (
     <main>
