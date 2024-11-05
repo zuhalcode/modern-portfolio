@@ -7,7 +7,6 @@ import Project from "@/components/section/project";
 import TapeSection from "@/components/section/tape";
 import ToolboxSection from "@/components/section/toolbox";
 import SectionHeader from "@/components/ui/section-header";
-import { Metadata } from "next";
 
 export default function Home() {
   return (

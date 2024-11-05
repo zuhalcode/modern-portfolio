@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ({ label }) => ({
       url: `${baseUrl}/animations/${label}`,
       lastModified: new Date(),
+      priority: 0.8,
     }),
   );
 
@@ -15,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${baseUrl}`,
       lastModified: new Date(),
+      priority: 1,
     },
     ...animationEntries,
   ];
