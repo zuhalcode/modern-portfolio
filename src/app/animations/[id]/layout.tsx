@@ -30,7 +30,7 @@ export async function generateMetadata({
 
   const metadataUrl: string = `${process.env.NEXT_PUBLIC_BASE_URL}/animations/${label}`;
   const imgUrl: string = new URL(
-    "/float-animaiton-og-image.png",
+    "/float-animation-og-image.png",
     process.env.NEXT_PUBLIC_BASE_URL,
   ).toString();
 
