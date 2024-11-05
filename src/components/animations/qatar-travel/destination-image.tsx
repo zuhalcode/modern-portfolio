@@ -1,4 +1,4 @@
-import { motion, useInView } from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 import Image from "next/image";
 import React, { useEffect, useRef } from "react";
 
@@ -15,18 +15,24 @@ const DestinationImage = ({
   activeIndex?: number;
   setActiveIndex: (index: number) => void;
 }) => {
-  useEffect(() => {
-    setActiveIndex(4);
-  }, [setActiveIndex]);
-
+  const controls = useAnimation();
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false });
+
+  const handleOnClick = () => {
+    setActiveIndex(activeIndex === index ? -1 : index);
+    controls.start({ x: 5000 }).then(() => {
+      controls.start({ x: 0 });
+    });
+  };
 
   return (
     <motion.div
       ref={ref}
-      transition={{ duration: 0.5, ease: "easeInOut", delay: 2 }}
-      onClick={() => setActiveIndex(activeIndex === index ? -1 : index)}
+      initial={{ x: 0 }}
+      animate={controls}
+      transition={{ duration: 0.1 }}
+      onClick={handleOnClick}
       className={`relative h-screen cursor-pointer overflow-hidden transition-all duration-1000 ${activeIndex === index ? "flex-[5]" : "flex-1"}`}
     >
       <motion.div
@@ -48,7 +54,7 @@ const DestinationImage = ({
           fill
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
           alt=""
-          className={`object-cover ${className}`}
+          className={`object-cover ${className} [mask-image:linear-gradient(to_bottom,transparent,black_0%,black_50%,transparent)]`}
         />
       </motion.div>
     </motion.div>

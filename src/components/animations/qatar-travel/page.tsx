@@ -181,16 +181,14 @@ const QatarTravel = () => {
               initial={{ opacity: 0, x: -100 }}
               animate={entertainmentIsInView ? { opacity: 1, x: 0 } : {}}
               transition={{ ease: "easeIn", duration: 0.5, delay: 2 }}
-              className="flex gap-1"
+              className="flex items-center gap-1 pt-2"
             >
-              <p className="pl-2 underline underline-offset-2">
+              <p className="pl-2 text-lg underline underline-offset-2">
                 Check all experiences
               </p>
               <ArrowRight />
             </motion.div>
           </div>
-
-          <div className="absolute bottom-0 left-0 right-0 h-full bg-gradient-to-t from-white/100 via-black/10 to-transparent" />
         </div>
 
         <div className="mt-40 flex h-screen w-full snap-center items-center justify-center gap-[1px] bg-green-500">
