@@ -14,7 +14,6 @@ type Animation = {
   imgAlt: string;
   keywords: string[];
   component: React.ReactNode;
-  metadata: Metadata;
 };
 
 export async function generateMetadata({

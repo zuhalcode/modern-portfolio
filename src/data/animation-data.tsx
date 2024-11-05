@@ -12,7 +12,6 @@ type Animation = {
   imgAlt: string;
   keywords: string[];
   component: React.ReactNode;
-  metadata: Metadata;
 };
 
 export const animationData: Animation[] = [
@@ -32,62 +31,9 @@ export const animationData: Animation[] = [
       "animasi",
       "interaktif",
     ],
-    imgUrl: "float-animation-og-image.png",
+    imgUrl: "/float-animation-og-image.png",
     imgAlt: "Floating animation created by Zuhal",
     component: <FloatingAnimationPage />,
-
-    metadata: {
-      // title: "Floating Animation",
-      // description:
-      //   "Discover a float animation created with Framer Motion, featuring smooth interactions that enhance creativity and user experience using JavaScript techniques",
-      authors: [{ name: "Zuhal" }],
-      // metadataBase: new URL(
-      //   "https://dzakiyyulashfiya.my.id/animations/float-animation",
-      // ),
-      // keywords: [
-      //   "zuhal",
-      //   "web",
-      //   "web animation",
-      //   "framer motion",
-      //   "javascript animation",
-      //   "javascript node.js",
-      //   "animasi",
-      //   "interaktif",
-      // ],
-      openGraph: {
-        title: "Zuhal | Floating Animation",
-        // description:
-        //   "Discover a float animation created with Framer Motion, featuring smooth interactions that enhance creativity and user experience using JavaScript techniques",
-        // url: "https://dzakiyyulashfiya.my.id/animations/float-animation",
-        // siteName: "Zuhal | Floating Animation",
-        // images: [
-        //   {
-        //     url: "/float-animaiton-og-image.png",
-        //     width: 1200,
-        //     height: 630,
-        //     alt: "Floating animation created by Zuhal",
-        //   },
-        // ],
-        locale: "en_US",
-        type: "website",
-      },
-      twitter: {
-        card: "summary_large_image",
-        title: "Zuhal | Floating Animation",
-        description:
-          "A passionate Web Developer, specialized in JavaScript. developing modern and scalable website using NextJS, NestJS, and TailwindCSS for responsive design",
-        creator: "Zuhal",
-        images: [
-          {
-            url: "/og-image.png",
-            width: 1000,
-            height: 630,
-          },
-        ],
-      },
-      robots: { index: true, follow: true },
-      category: "technology",
-    },
   },
   // {
   //   label: "qatar-travel",
