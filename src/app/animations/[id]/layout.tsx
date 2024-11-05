@@ -29,6 +29,10 @@ export async function generateMetadata({
     foundAnimation;
 
   const metadataUrl: string = `${process.env.NEXT_PUBLIC_BASE_URL}/animations/${label}`;
+  const imgUrl: string = new URL(
+    "/og-image.png",
+    process.env.NEXT_PUBLIC_BASE_URL,
+  ).toString();
 
   return {
     title,
@@ -42,7 +46,7 @@ export async function generateMetadata({
       siteName: "Floating Animation created by Zuhal",
       images: [
         {
-          url: "/float-animation-og-image.png",
+          url: imgUrl,
           width: 1200,
           height: 630,
           alt: imgAlt,
@@ -58,7 +62,7 @@ export async function generateMetadata({
       creator: "Zuhal",
       images: [
         {
-          url: "/float-animation-og-image.png",
+          url: imgUrl,
           width: 1200,
           height: 630,
         },
