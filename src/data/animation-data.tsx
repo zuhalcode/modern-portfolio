@@ -8,7 +8,7 @@ type Animation = {
   label: string;
   description: string;
   url: string;
-  imgUrl: string;
+
   imgAlt: string;
   keywords: string[];
   component: React.ReactNode;
@@ -31,7 +31,6 @@ export const animationData: Animation[] = [
       "animasi",
       "interaktif",
     ],
-    imgUrl: "/float-animation-og-image.png",
     imgAlt: "Floating animation created by Zuhal",
     component: <FloatingAnimationPage />,
   },

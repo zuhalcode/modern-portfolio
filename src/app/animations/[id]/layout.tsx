@@ -10,7 +10,7 @@ type Animation = {
   label: string;
   description: string;
   url: string;
-  imgUrl: string;
+
   imgAlt: string;
   keywords: string[];
   component: React.ReactNode;
@@ -25,15 +25,8 @@ export async function generateMetadata({
 
   if (!foundAnimation) throw new Error(`Animation with id "${id}" not found.`);
 
-  const {
-    title,
-    description,
-    url,
-    imgUrl,
-    imgAlt,
-    keywords,
-    label,
-  }: Animation = foundAnimation;
+  const { title, description, url, imgAlt, keywords, label }: Animation =
+    foundAnimation;
 
   const metadataUrl: string = `${process.env.NEXT_PUBLIC_BASE_URL}/animations/${label}`;
 
@@ -47,7 +40,14 @@ export async function generateMetadata({
       description,
       url: metadataUrl,
       siteName: "Floating Animation created by Zuhal",
-      images: [{ url: imgUrl, width: 1200, height: 630, alt: imgAlt }],
+      images: [
+        {
+          url: "/float-animation-og-image.png",
+          width: 1200,
+          height: 630,
+          alt: imgAlt,
+        },
+      ],
       locale: "en_US",
       type: "website",
     },
@@ -58,7 +58,7 @@ export async function generateMetadata({
       creator: "Zuhal",
       images: [
         {
-          url: imgUrl,
+          url: "/float-animation-og-image.png",
           width: 1200,
           height: 630,
         },
