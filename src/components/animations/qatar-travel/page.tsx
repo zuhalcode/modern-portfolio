@@ -22,6 +22,7 @@ import DestinationImage from "./destination-image";
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,6 +48,9 @@ const QatarTravel = () => {
 
   const entertainmentRef = useRef(null);
   const entertainmentIsInView = useInView(entertainmentRef, { once: false });
+
+  const culturalRef = useRef(null);
+  const culturalIsInView = useInView(culturalRef, { once: false });
 
   let lastScrollY = 0;
 
@@ -80,11 +84,11 @@ const QatarTravel = () => {
     <>
       <Navbar nav={nav} />
 
-      <main ref={scrollRef} className="space-y-24 bg-[#ffe5d5]">
-        <div className="qatar-clip h-screen overflow-hidden">
+      <main ref={scrollRef} className="space-y-24 bg-[#ffe5d5] pb-12">
+        <div className="polygon-clip h-screen overflow-hidden">
           <motion.div
             style={{ scale }}
-            className="qatar-clip absolute h-screen w-full bg-[url('/qatar-img/qatar2.jpg')] bg-cover"
+            className="absolute h-screen w-full bg-[url('/qatar-img/qatar2.jpg')] bg-cover"
           />
 
           <div className="absolute ml-44 mt-20 space-y-5">
@@ -183,7 +187,7 @@ const QatarTravel = () => {
               transition={{ ease: "easeIn", duration: 0.5, delay: 2 }}
               className="flex items-center gap-1 pt-2"
             >
-              <p className="pl-2 text-lg underline underline-offset-2">
+              <p className="cursor-pointer pl-2 text-lg underline underline-offset-2">
                 Check all experiences
               </p>
               <ArrowRight />
@@ -191,18 +195,72 @@ const QatarTravel = () => {
           </div>
         </div>
 
-        <div className="mt-40 flex h-screen w-full snap-center items-center justify-center gap-[1px] bg-green-500">
-          {/* {expandableImages.map((src, i) => (
-            <DestinationImage
-              key={i}
-              src={src}
-              index={i}
-              // isInView={isInView}
-              // activeIndex={activeIndex}
-              // setActiveIndex={setActiveIndex}
+        <div
+          ref={culturalRef}
+          className="relative flex h-screen flex-col items-center"
+        >
+          <motion.h1
+            initial={{ opacity: 0 }}
+            animate={culturalIsInView && { opacity: 1 }}
+            transition={{ ease: "easeIn", duration: 0.5, delay: 1 }}
+            className={`${playfair.className} absolute top-5 z-10 text-center text-8xl uppercase text-black`}
+          >
+            Cultural and historical tours
+          </motion.h1>
+
+          <div className="absolute flex h-screen w-full items-center justify-center gap-16">
+            <div className="-mt-24">
+              <QatarImage
+                src="/qatar-img/historical3.jpg"
+                width={300}
+                height={350}
+              />
+            </div>
+            <div className="pt-24">
+              <QatarImage
+                src="/qatar-img/historical2.jpg"
+                width={250}
+                height={350}
+              />
+            </div>
+            <QatarImage
+              src="/qatar-img/historical.jpg"
+              width={350}
+              height={350}
             />
-          ))} */}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ ease: "easeIn", duration: 0.5, delay: 1.5 }}
+            className="absolute bottom-0 flex w-full justify-center"
+          >
+            <Button
+              className="border-black text-black hover:bg-black hover:text-white"
+              variant="outline"
+            >
+              Check Historical Tours
+            </Button>
+          </motion.div>
         </div>
+
+        <footer className="flex w-full border border-black bg-transparent py-3 text-black">
+          <p className="mx-auto text-center leading-loose">
+            Copyright &copy; 2024 Design inspired by {``}
+            <Link
+              href="https://asoview.me/"
+              className="text-blue-700 hover:text-black hover:underline"
+            >
+              Asoview
+            </Link>
+            {""} | {""} Developed with {""}
+            <span aria-label="love" className="text-red-500" role="img">
+              &#10084;
+            </span>
+            {""} by Zuhal. All rights reserved.
+          </p>
+        </footer>
       </main>
     </>
   );
