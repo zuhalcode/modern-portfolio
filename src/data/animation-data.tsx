@@ -8,8 +8,8 @@ type Animation = {
   label: string;
   description: string;
   url: string;
-
   imgAlt: string;
+  imgUrl: string;
   keywords: string[];
   component: React.ReactNode;
 };
@@ -32,14 +32,15 @@ export const animationData: Animation[] = [
       "interaktif",
     ],
     imgAlt: "Floating animation created by Zuhal",
+    imgUrl: "floating.png",
     component: <FloatingAnimationPage />,
   },
   {
     label: "qatar-travel",
-    title: "Floating Animation",
+    title: "Qatar Travel",
     description:
       "Discover a float animation created with Framer Motion, featuring smooth interactions that enhance creativity and user experience using JavaScript techniques",
-    url: `${process.env.NEXT_PUBLIC_BASE_URL}/animations/float-animation`,
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/animations/qatar-travel`,
     keywords: [
       "zuhal",
       "web",
@@ -50,6 +51,7 @@ export const animationData: Animation[] = [
       "animasi",
       "interaktif",
     ],
+    imgUrl: "qatar.png",
     imgAlt: "Floating animation created by Zuhal",
     component: <QatarTravel />,
   },

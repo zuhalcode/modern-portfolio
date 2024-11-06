@@ -1,3 +1,4 @@
+import AnimationGallery from "@/components/section/animation-gallery";
 import ApproachSection from "@/components/section/approach";
 import ExperienceSection from "@/components/section/experience";
 import Footer from "@/components/section/footer";
@@ -7,6 +8,7 @@ import Project from "@/components/section/project";
 import TapeSection from "@/components/section/tape";
 import ToolboxSection from "@/components/section/toolbox";
 import SectionHeader from "@/components/ui/section-header";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -17,6 +19,13 @@ export default function Home() {
         <Hero />
         <TapeSection />
         <PersonalSection />
+
+        <SectionHeader
+          title="Experience Motion in Every Frame"
+          eyebrow="animation gallery"
+          desc="Showcase of dynamic animations, delivering seamless visuals that captivate and inspire."
+        />
+        <AnimationGallery />
 
         <SectionHeader
           title="Tools that Power the Future"
