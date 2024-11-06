@@ -11,11 +11,8 @@ import {
 import { animationData } from "@/data/animation-data";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 const AnimationGallery = () => {
-  const imageUrl = animationData[0].imgUrl;
-  //   alert(imageUrl);
   return (
     <div className="mx-auto flex items-center justify-center px-3 pb-40 pt-16">
       <Card className="hidden-scrollbar max-h-screen w-full overflow-y-auto bg-primary/80 sm:max-w-xl md:max-w-5xl">
