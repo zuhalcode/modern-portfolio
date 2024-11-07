@@ -1,12 +1,7 @@
-import {
-  animate,
-  AnimatePresence,
-  motion,
-  PanInfo,
-  useMotionValue,
-} from "framer-motion";
+import { motion } from "framer-motion";
 import LocomotiveScroll from "locomotive-scroll";
 import {
+  AlignJustify,
   BicepsFlexed,
   BriefcaseBusiness,
   GalleryHorizontalEnd,
@@ -20,7 +15,7 @@ import {
 
 import React, { useRef, useState } from "react";
 
-const Menu = ({ scroll }: { scroll: LocomotiveScroll | null }) => {
+const CircularMenu = ({ scroll }: { scroll: LocomotiveScroll | null }) => {
   const headerMenu = [
     { name: "hero", icon: Home },
     { name: "about", icon: User },
@@ -35,19 +30,15 @@ const Menu = ({ scroll }: { scroll: LocomotiveScroll | null }) => {
   const ref = useRef(null);
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isDraggable, setIsDraggable] = useState<boolean>(true); // Kontrol drag
 
   const handleOnClick = (href: string) => scroll?.scrollTo(`#${href}`);
   const handleToggleMenu = () => setIsOpen(!isOpen);
-
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
 
   return (
     <motion.div
       drag
       dragElastic={0.3}
-      dragConstraints={{ top: 10, bottom: 400 }}
+      dragConstraints={{ top: 10, bottom: 400 }} // Boundary Y Axis
       dragTransition={{
         power: 0.5, // Tentukan kekuatan momentum (semakin besar semakin jauh meluncur)
         timeConstant: 200, // Durasi momentum sebelum berhenti
@@ -55,28 +46,18 @@ const Menu = ({ scroll }: { scroll: LocomotiveScroll | null }) => {
         bounceDamping: 10,
         modifyTarget: (target) => {
           const screenWidth = window.innerWidth;
-          const screenHeight = window.innerHeight;
           const menuWidth = 200;
-          const menuHeight = 200;
 
           const leftBoundary = 0;
           const rightBoundary = screenWidth - menuWidth;
-          const topBoundary = 0;
-          const bottomBoundary = screenHeight - menuHeight;
 
-          // Pembatasan untuk x (horizontal)
+          // Boundary X Axis
           const clampedX = Math.max(
             leftBoundary,
             Math.min(target, rightBoundary),
           );
 
-          // Pembatasan untuk y (vertikal) setelah membatasi x
-          const clampedY = Math.max(
-            topBoundary,
-            Math.min(y.get(), bottomBoundary),
-          );
-
-          return clampedX; // Atau `clampedY` jika ingin membatasi sumbu vertikal terlebih dahulu
+          return clampedX;
         },
       }}
       ref={ref}
@@ -89,34 +70,36 @@ const Menu = ({ scroll }: { scroll: LocomotiveScroll | null }) => {
           className="absolute z-10 flex h-16 w-16 cursor-pointer items-center justify-center rounded-full bg-white bg-opacity-20 backdrop-blur"
           onClick={handleToggleMenu}
         >
-          <Plus color="white" size={32} />
+          {isOpen ? (
+            <Plus color="white" size={32} />
+          ) : (
+            <AlignJustify color="white" size={32} />
+          )}
         </motion.li>
 
-        <AnimatePresence>
-          {isOpen &&
-            headerMenu.map((menu, i) => {
-              const angle = (360 / headerMenu.length) * i;
-              const x = 60 * Math.cos((angle * Math.PI) / 180); // Adjust distance
-              const y = 60 * Math.sin((angle * Math.PI) / 180);
+        {isOpen &&
+          headerMenu.map((menu, i) => {
+            const angle = (360 / headerMenu.length) * i;
+            const x = 60 * Math.cos((angle * Math.PI) / 180);
+            const y = 60 * Math.sin((angle * Math.PI) / 180);
 
-              return (
-                <motion.li
-                  key={i}
-                  initial={{ opacity: 0, x: 0, y: 0 }}
-                  animate={{ opacity: 1, x, y }}
-                  exit={{ opacity: 0, x: 0, y: 0 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  className="absolute cursor-pointer"
-                  onClick={() => handleOnClick(menu.name)}
-                >
-                  <menu.icon />
-                </motion.li>
-              );
-            })}
-        </AnimatePresence>
+            return (
+              <motion.li
+                key={i}
+                initial={{ opacity: 0, x: 0, y: 0 }}
+                animate={{ opacity: 1, x, y }}
+                exit={{ opacity: 0, x: 0, y: 0 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                className="absolute cursor-pointer"
+                onClick={() => handleOnClick(menu.name)}
+              >
+                <menu.icon />
+              </motion.li>
+            );
+          })}
       </ul>
     </motion.div>
   );
 };
 
-export default Menu;
+export default CircularMenu;

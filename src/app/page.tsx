@@ -4,48 +4,27 @@ import AnimationGallery from "@/components/section/animation-gallery";
 import ApproachSection from "@/components/section/approach";
 import ExperienceSection from "@/components/section/experience";
 import Footer from "@/components/section/footer";
-
 import Hero from "@/components/section/hero";
-import Menu from "@/components/section/menu";
 import PersonalSection from "@/components/section/personal";
 import Project from "@/components/section/project";
 import TapeSection from "@/components/section/tape";
 import ToolboxSection from "@/components/section/toolbox";
 import SectionHeader from "@/components/ui/section-header";
-import { motion } from "framer-motion";
-import LocomotiveScroll from "locomotive-scroll";
+import CircularMenu from "@/components/ui/circular-menu";
+import { useLocomotiveScroll } from "@/hooks/use-locomotive-scroll";
 
 import "locomotive-scroll/dist/locomotive-scroll.css";
-
-import { useEffect, useRef, useState } from "react";
+import ModernCircularMenu from "@/components/ui/modern-circular-menu";
 
 export default function Home() {
-  const ref = useRef(null);
-  const [scroll, setScroll] = useState<LocomotiveScroll | null>(null);
-
-  useEffect(() => {
-    const scrollContainer = ref.current;
-    if (!scrollContainer) return;
-
-    const locomotiveScroll = new LocomotiveScroll({
-      el: scrollContainer,
-      smooth: true,
-      getDirection: true,
-    });
-
-    setScroll(locomotiveScroll);
-
-    return () => {
-      locomotiveScroll.destroy();
-    };
-  }, []);
+  // const { scrollInstance, scrollRef } = useLocomotiveScroll();
 
   return (
     <main>
-      <Menu scroll={scroll} />
+      <ModernCircularMenu />
 
-      <div ref={ref} className="relative overflow-hidden">
-        <Hero scroll={scroll} />
+      <div className="relative overflow-hidden">
+        {/* <Hero scroll={scrollInstance} /> */}
         <PersonalSection />
         <TapeSection />
 
