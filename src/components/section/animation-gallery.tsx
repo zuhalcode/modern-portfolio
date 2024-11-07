@@ -17,7 +17,7 @@ const AnimationGallery = () => {
     <div className="mx-auto flex items-center justify-center px-3 pb-40 pt-16">
       <Card className="hidden-scrollbar max-h-screen w-full overflow-y-auto bg-primary/80 sm:max-w-xl md:max-w-5xl">
         <CardContent className="grid grid-cols-2 items-center justify-between gap-5 py-5">
-          {animationData.map(({ label, title, imgUrl }, i) => (
+          {animationData.map(({ label, title, imgUrl, imgAlt }, i) => (
             <Link
               href={`/animations/${label}`}
               target="_blank"
@@ -32,7 +32,7 @@ const AnimationGallery = () => {
 
                 <Image
                   src={`/animation/${imgUrl}`}
-                  alt=""
+                  alt={imgAlt}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover group-hover:opacity-80"

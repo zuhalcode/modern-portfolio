@@ -118,14 +118,3 @@
 .hidden-scrollbar::-webkit-scrollbar {
   display: none;
 }
-
-.mask-clip {
-  overflow: clip;
-  mask-image: linear-gradient(
-    to bottom,
-    transparent,
-    rgba(0, 0, 0, 0.1),
-    rgba(0, 0, 0, 0.9),
-    transparent
-  );
-}

@@ -23,7 +23,7 @@ const PersonalSection = () => {
   return (
     <section
       ref={ref}
-      className={`${jetBrainsMono.className} w-full pb-40 pt-16`}
+      className={`${jetBrainsMono.className} w-full pb-24 pt-16`}
       id="about"
     >
       <div className="flex flex-col items-center justify-center gap-6 lg:flex-row lg:justify-between lg:px-14 xl:px-32">

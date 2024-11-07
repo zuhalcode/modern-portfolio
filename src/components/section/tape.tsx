@@ -17,7 +17,7 @@ const words = [
 
 const TapeSection = () => {
   return (
-    <div className="py-16">
+    <div className="pb-28">
       <div className="-mx-1 -rotate-3 bg-gradient-to-r from-emerald-300 to-sky-400">
         <div className="flex [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]">
           <StarIcon />

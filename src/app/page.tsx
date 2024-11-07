@@ -1,24 +1,53 @@
+"use client";
+
 import AnimationGallery from "@/components/section/animation-gallery";
 import ApproachSection from "@/components/section/approach";
 import ExperienceSection from "@/components/section/experience";
 import Footer from "@/components/section/footer";
+
 import Hero from "@/components/section/hero";
+import Menu from "@/components/section/menu";
 import PersonalSection from "@/components/section/personal";
 import Project from "@/components/section/project";
 import TapeSection from "@/components/section/tape";
 import ToolboxSection from "@/components/section/toolbox";
 import SectionHeader from "@/components/ui/section-header";
-import Image from "next/image";
+import { motion } from "framer-motion";
+import LocomotiveScroll from "locomotive-scroll";
+
+import "locomotive-scroll/dist/locomotive-scroll.css";
+
+import { useEffect, useRef, useState } from "react";
 
 export default function Home() {
+  const ref = useRef(null);
+  const [scroll, setScroll] = useState<LocomotiveScroll | null>(null);
+
+  useEffect(() => {
+    const scrollContainer = ref.current;
+    if (!scrollContainer) return;
+
+    const locomotiveScroll = new LocomotiveScroll({
+      el: scrollContainer,
+      smooth: true,
+      getDirection: true,
+    });
+
+    setScroll(locomotiveScroll);
+
+    return () => {
+      locomotiveScroll.destroy();
+    };
+  }, []);
+
   return (
     <main>
-      <div className="overflow-hidden">
-        {/* <Header /> */}
+      <Menu scroll={scroll} />
 
-        <Hero />
-        <TapeSection />
+      <div ref={ref} className="relative overflow-hidden">
+        <Hero scroll={scroll} />
         <PersonalSection />
+        <TapeSection />
 
         <SectionHeader
           title="Experience Motion in Every Frame"
