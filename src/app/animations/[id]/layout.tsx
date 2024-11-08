@@ -1,5 +1,4 @@
 import { animationData } from "@/data/animation-data";
-import { Metadata } from "next";
 
 interface LayoutProps {
   children: React.ReactNode;

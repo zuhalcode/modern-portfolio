@@ -19,6 +19,7 @@ const AnimationGallery = () => {
         <CardContent className="grid grid-cols-2 items-center justify-between gap-5 py-5">
           {animationData.map(({ label, title, imgUrl, imgAlt }, i) => (
             <Link
+              key={i}
               href={`/animations/${label}`}
               target="_blank"
               className="group relative col-span-1 h-[200px] w-full cursor-pointer overflow-hidden"

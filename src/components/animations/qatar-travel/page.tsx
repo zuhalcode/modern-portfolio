@@ -1,17 +1,10 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowBigRight, ArrowRight, Search } from "lucide-react";
+import { ArrowRight, Search } from "lucide-react";
 
 import { Playfair_Display } from "next/font/google";
-import {
-  motion,
-  useInView,
-  useMotionValue,
-  useMotionValueEvent,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useInView } from "framer-motion";
 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -19,10 +12,11 @@ import LocomotiveScroll from "locomotive-scroll";
 import QatarImage from "./qatar-image";
 import DestinationImage from "./destination-image";
 
-import "locomotive-scroll/dist/locomotive-scroll.css";
+// import "locomotive-scroll/dist/locomotive-scroll.css";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { useLocomotiveScroll } from "@/hooks/use-locomotive-scroll";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,11 +34,11 @@ const expandableImages: string[] = [
 ];
 
 const QatarTravel = () => {
+  const { scrollRef, scrollInstance } = useLocomotiveScroll();
+
   const [scale, setScale] = useState<number>(1);
   const [nav, setNav] = useState<boolean>(true);
   const [activeIndex, setActiveIndex] = useState<number>(4);
-
-  const scrollRef = useRef<HTMLElement | null>(null);
 
   const entertainmentRef = useRef(null);
   const entertainmentIsInView = useInView(entertainmentRef, { once: false });
@@ -54,31 +48,16 @@ const QatarTravel = () => {
 
   let lastScrollY = 0;
 
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
+  scrollInstance?.on("scroll", (obj) => {
+    const currentScrollY = obj.scroll.y;
 
-    const scroll = new LocomotiveScroll({
-      el: scrollContainer,
-      smooth: true,
-      getDirection: true,
-    });
+    const newScale = 1 + currentScrollY / 500;
+    setScale(Math.min(newScale, 2));
 
-    scroll.on("scroll", (obj) => {
-      const currentScrollY = obj.scroll.y;
-
-      const newScale = 1 + currentScrollY / 500;
-      setScale(Math.min(newScale, 2));
-
-      if (currentScrollY > lastScrollY && currentScrollY > 50) setNav(false);
-      else setNav(true);
-      lastScrollY = currentScrollY;
-    });
-
-    return () => {
-      scroll.destroy();
-    };
-  }, []);
+    if (currentScrollY > lastScrollY && currentScrollY > 50) setNav(false);
+    else setNav(true);
+    lastScrollY = currentScrollY;
+  });
 
   return (
     <>

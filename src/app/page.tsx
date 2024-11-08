@@ -10,21 +10,21 @@ import Project from "@/components/section/project";
 import TapeSection from "@/components/section/tape";
 import ToolboxSection from "@/components/section/toolbox";
 import SectionHeader from "@/components/ui/section-header";
-import CircularMenu from "@/components/ui/circular-menu";
-import { useLocomotiveScroll } from "@/hooks/use-locomotive-scroll";
 
-import "locomotive-scroll/dist/locomotive-scroll.css";
+import { useLocomotiveScroll } from "@/hooks/use-locomotive-scroll";
 import ModernCircularMenu from "@/components/ui/modern-circular-menu";
 
+import "locomotive-scroll/dist/locomotive-scroll.css";
+
 export default function Home() {
-  // const { scrollInstance, scrollRef } = useLocomotiveScroll();
+  const { scrollInstance, scrollRef } = useLocomotiveScroll();
 
   return (
     <main>
-      <ModernCircularMenu />
+      <ModernCircularMenu scroll={scrollInstance} />
 
-      <div className="relative overflow-hidden">
-        {/* <Hero scroll={scrollInstance} /> */}
+      <div ref={scrollRef} className="relative overflow-hidden">
+        <Hero scroll={scrollInstance} />
         <PersonalSection />
         <TapeSection />
 

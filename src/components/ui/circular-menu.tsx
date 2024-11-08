@@ -27,8 +27,6 @@ const CircularMenu = ({ scroll }: { scroll: LocomotiveScroll | null }) => {
     { name: "contact", icon: Phone },
   ];
 
-  const ref = useRef(null);
-
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleOnClick = (href: string) => scroll?.scrollTo(`#${href}`);
@@ -60,7 +58,6 @@ const CircularMenu = ({ scroll }: { scroll: LocomotiveScroll | null }) => {
           return clampedX;
         },
       }}
-      ref={ref}
       className="absolute left-14 top-14 z-20 flex items-center justify-center"
     >
       <ul className="relative z-20 flex h-16 w-16 items-center justify-center">
