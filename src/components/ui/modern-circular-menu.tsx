@@ -151,7 +151,7 @@ const ModernCircularMenu = ({
           return clampedX;
         },
       }}
-      className="absolute left-[84%] top-48 z-20 hidden items-center justify-center xl:flex"
+      className="absolute left-44 top-48 z-20 flex items-center justify-center"
     >
       <motion.span
         whileTap={{ rotate: 315 }}
