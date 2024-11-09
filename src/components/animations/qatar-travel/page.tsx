@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowRight, Search } from "lucide-react";
+import { ArrowRight, Menu, Search } from "lucide-react";
 
 import { Playfair_Display } from "next/font/google";
 import { motion, useInView } from "framer-motion";
@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useLocomotiveScroll } from "@/hooks/use-locomotive-scroll";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -48,30 +49,39 @@ const QatarTravel = () => {
 
   let lastScrollY = 0;
 
-  scrollInstance?.on("scroll", (obj) => {
-    const currentScrollY = obj.scroll.y;
+  useEffect(() => {
+    scrollInstance?.on("scroll", (obj) => {
+      const currentScrollY = obj.scroll.y;
 
-    const newScale = 1 + currentScrollY / 500;
-    setScale(Math.min(newScale, 2));
+      const newScale = 1 + currentScrollY / 500;
+      setScale(Math.min(newScale, 2));
 
-    if (currentScrollY > lastScrollY && currentScrollY > 50) setNav(false);
-    else setNav(true);
-    lastScrollY = currentScrollY;
-  });
+      if (currentScrollY > lastScrollY && currentScrollY > 50) setNav(false);
+      else setNav(true);
+      lastScrollY = currentScrollY;
+    });
+
+    return () => {
+      scrollInstance?.destroy();
+    };
+  }, []);
 
   return (
     <>
       <Navbar nav={nav} />
 
-      <main ref={scrollRef} className="space-y-24 bg-[#ffe5d5] pb-12">
-        <div className="polygon-clip h-screen overflow-hidden">
+      <main
+        ref={scrollRef}
+        className="space-y-12 bg-[#ffe5d5] pb-12 xl:space-y-24"
+      >
+        <div className="sm:polygon-clip mobile-clip h-screen overflow-hidden">
           <motion.div
             style={{ scale }}
             className="absolute h-screen w-full bg-[url('/qatar-img/qatar2.jpg')] bg-cover"
           />
 
-          <div className="absolute ml-44 mt-20 space-y-5">
-            <h2 className="max-w-md text-5xl font-semibold text-white">
+          <div className="absolute m-3 mt-10 space-y-5 sm:ml-10 lg:ml-32 lg:mt-20 xl:ml-44">
+            <h2 className="max-w-56 text-2xl font-semibold text-white sm:max-w-md sm:text-5xl">
               Enjoy the moment while visiting Qatar
             </h2>
 
@@ -80,13 +90,13 @@ const QatarTravel = () => {
               <input
                 type="text"
                 placeholder="Search Location"
-                className="w-96 outline-none placeholder:text-black"
+                className="w-full text-sm outline-none placeholder:text-black xl:w-96"
               />
             </div>
           </div>
         </div>
 
-        <div className="h-screen">
+        <div className="min-h-screen">
           <div className="pt-4 text-center uppercase text-black">
             <h1
               className={`${playfair.className} text-4xl font-medium tracking-widest`}
@@ -101,7 +111,7 @@ const QatarTravel = () => {
             </h1>
           </div>
 
-          <div className="flex w-full items-center justify-center gap-7 px-5 py-6">
+          <div className="flex w-full flex-col items-center justify-center gap-2 px-5 py-6 xl:flex-row xl:gap-7">
             <QatarImage src="/qatar-img/qatar3.jpg" width={250} height={350} />
             <QatarImage src="/qatar-img/qatar4.jpg" width={600} height={450} />
             <QatarImage src="/qatar-img/qatar5.jpg" width={350} height={350} />
@@ -176,7 +186,7 @@ const QatarTravel = () => {
 
         <div
           ref={culturalRef}
-          className="relative flex h-screen flex-col items-center"
+          className="relative hidden h-screen flex-col items-center xl:flex"
         >
           <motion.h1
             initial={{ opacity: 0 }}
@@ -224,7 +234,7 @@ const QatarTravel = () => {
           </motion.div>
         </div>
 
-        <footer className="flex w-full border border-black bg-transparent py-3 text-black">
+        <footer className="flex hidden w-full border border-black bg-transparent py-3 text-black">
           <p className="mx-auto text-center leading-loose">
             Copyright &copy; 2024 Design inspired by {``}
             <Link
@@ -250,10 +260,10 @@ const Navbar = ({ nav }: { nav: boolean }) => {
     <nav
       className={`sticky left-0 right-0 top-0 z-10 bg-[#ffe5d5] transition-transform duration-300 ${!nav && "-translate-y-full"}`}
     >
-      <ul className="z-20 flex w-full items-center justify-between px-20 py-3 text-black">
+      <ul className="z-20 flex w-full items-center justify-between px-5 py-3 text-black xl:px-20">
         <li className="font-bold">Zuhal Travel</li>
 
-        <ul className="flex w-1/3 justify-between">
+        <ul className="hidden w-3/4 items-center justify-between sm:flex">
           <li className="cursor-pointer text-sm font-medium capitalize hover:underline">
             Appartment
           </li>
@@ -263,11 +273,30 @@ const Navbar = ({ nav }: { nav: boolean }) => {
           <li className="cursor-pointer text-sm font-medium capitalize hover:underline">
             Contact Us
           </li>
-        </ul>
-
-        <ul>
           <li className="">Become a host</li>
         </ul>
+
+        <Sheet>
+          <SheetTrigger className="sm:hidden">
+            <Menu />
+          </SheetTrigger>
+          <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+            <ul className="flex flex-col gap-4 pt-5 text-black">
+              <li className="cursor-pointer text-sm font-medium capitalize hover:underline">
+                Appartment
+              </li>
+              <li className="cursor-pointer text-sm font-medium capitalize hover:underline">
+                Where to go
+              </li>
+              <li className="cursor-pointer text-sm font-medium capitalize hover:underline">
+                Contact Us
+              </li>
+              <li className="cursor-pointer text-sm font-medium capitalize hover:underline">
+                Become a Host
+              </li>
+            </ul>
+          </SheetContent>
+        </Sheet>
       </ul>
     </nav>
   );

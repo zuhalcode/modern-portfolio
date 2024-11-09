@@ -25,6 +25,8 @@ export function useLocomotiveScroll(options: LocomotiveScrollOptions = {}) {
           smooth: true,
           ...options,
         });
+
+        setScrollInstance(locomotiveScroll);
       }
     };
 

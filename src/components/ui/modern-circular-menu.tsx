@@ -13,7 +13,13 @@ import {
   Wrench,
 } from "lucide-react";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./tooltip";
 
 const ModernCircularMenu = ({
   scroll,
@@ -26,7 +32,7 @@ const ModernCircularMenu = ({
     { name: "gallery", icon: GalleryHorizontalEnd, color: "#edf12b" },
     { name: "toolbox", icon: Wrench, color: "#92e926" },
     { name: "portfolio", icon: Laptop, color: "#55ff49" },
-    { name: "experince", icon: BriefcaseBusiness, color: "#29dbb8" },
+    { name: "experience", icon: BriefcaseBusiness, color: "#29dbb8" },
     { name: "skill", icon: BicepsFlexed, color: "#473be5" },
     { name: "contact", icon: Phone, color: "#e32fdf" },
   ];
@@ -35,11 +41,13 @@ const ModernCircularMenu = ({
   const [isShow, setIsShow] = useState<boolean>(false);
 
   const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
-  const handleOnClick = (href: string) => scroll?.scrollTo(`#${href}`);
+  const handleOnClick = (href: string) => {
+    scroll?.scrollTo(`#${href}`, { offset: -130 });
+  };
 
   const handleToggleMenu = async () => {
     setIsReadyToShow(!isReadyToShow);
-    await delay(500);
+    await delay(1500);
     setIsShow(!isShow);
   };
 
@@ -129,7 +137,6 @@ const ModernCircularMenu = ({
     <motion.div
       drag
       dragElastic={0.3}
-      dragConstraints={{ top: 10, bottom: 400 }} // Boundary Y Axis
       dragTransition={{
         power: 0.5,
         timeConstant: 200,
@@ -178,43 +185,46 @@ const ModernCircularMenu = ({
           const colorClassName = `text-[${color}]`;
 
           return (
-            <motion.li
-              key={i}
-              variants={menuVariants(
-                i,
-                color,
-                angle,
-                xClose,
-                yClose,
-                xOpen,
-                yOpen,
-              )}
-              initial="state"
-              animate={[
-                isReadyToShow ? "stateOpen" : "",
-                isReadyToShow && isShow ? "open" : "",
-              ]}
-              transition={{ duration: 0.5 }}
-              className={`group absolute z-20 flex cursor-pointer items-center justify-center overflow-hidden rounded-md border backdrop-blur`}
-              whileHover={
-                isShow
-                  ? {
-                      backgroundColor: `${item.color}`,
-                      color: "black",
-                    }
-                  : {}
-              }
-              style={{
-                boxShadow: `0 0 10px 1px ${item.color}`,
-                border: `${item.color}`,
-                color: `${item.color}`,
-              }}
-              onClick={() => handleOnClick(item.name)}
-            >
-              <item.icon
-                className={`absolute z-10 -rotate-45 ${colorClassName}`}
-              />
-            </motion.li>
+            <>
+              <motion.li
+                key={i}
+                variants={menuVariants(
+                  i,
+                  color,
+                  angle,
+                  xClose,
+                  yClose,
+                  xOpen,
+                  yOpen,
+                )}
+                initial="state"
+                animate={[
+                  isReadyToShow ? "stateOpen" : "",
+                  isReadyToShow && isShow ? "open" : "",
+                ]}
+                exit={{ opacity: 0, x: 0, y: 0 }}
+                transition={{ duration: 0.3 }}
+                className={`group absolute z-20 flex cursor-pointer items-center justify-center overflow-hidden rounded-md border backdrop-blur`}
+                whileHover={
+                  isShow
+                    ? {
+                        backgroundColor: `${item.color}`,
+                        color: "black",
+                      }
+                    : {}
+                }
+                style={{
+                  boxShadow: `0 0 10px 1px ${item.color}`,
+                  border: `${item.color}`,
+                  color: `${item.color}`,
+                }}
+                onClick={() => handleOnClick(item.name)}
+              >
+                <item.icon
+                  className={`absolute z-10 -rotate-[405deg] ${colorClassName}`}
+                />
+              </motion.li>
+            </>
           );
         })}
       </motion.ul>

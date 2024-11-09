@@ -11,6 +11,7 @@ import LocomotiveScroll from "locomotive-scroll";
 
 const HeroSection = ({ scroll }: { scroll: LocomotiveScroll | null }) => {
   const handleOnClick = () => scroll?.scrollTo("#about");
+  console.log(scroll);
 
   return (
     <div

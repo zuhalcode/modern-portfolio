@@ -4,7 +4,7 @@ import { experiences } from "@/data";
 
 const ExperienceSection = () => {
   return (
-    <section className="px-3 pb-64 pt-16">
+    <section className="px-3 pb-64 pt-16" id="experience">
       <div className="mx-auto grid w-full grid-cols-1 gap-10 md:w-3/4">
         {experiences.map((exp) => (
           <Button

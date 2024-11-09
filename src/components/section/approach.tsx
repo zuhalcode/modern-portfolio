@@ -6,7 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const ApproachSection = () => {
   return (
-    <section className="py-16">
+    <section className="py-16" id="skill">
       <section className="mx-auto flex w-full flex-col items-center justify-center gap-4 px-8 lg:flex-row">
         <Card
           title="Planning & Strategy"

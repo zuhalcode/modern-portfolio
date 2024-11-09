@@ -5,7 +5,7 @@ import { MousePointer2 } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="relative w-full pt-20">
+    <footer className="relative w-full pt-20" id="contact">
       <div className="absolute left-0 top-0 -z-10 min-h-96 w-full sm:-top-32">
         <img
           src="/footer-grid.svg"
