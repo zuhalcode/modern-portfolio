@@ -12,7 +12,7 @@ import LocomotiveScroll from "locomotive-scroll";
 import QatarImage from "./qatar-image";
 import DestinationImage from "./destination-image";
 
-// import "locomotive-scroll/dist/locomotive-scroll.css";
+import "locomotive-scroll/dist/locomotive-scroll.css";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -64,7 +64,7 @@ const QatarTravel = () => {
     return () => {
       scrollInstance?.destroy();
     };
-  }, []);
+  }, [scrollInstance]);
 
   return (
     <>
@@ -72,9 +72,9 @@ const QatarTravel = () => {
 
       <main
         ref={scrollRef}
-        className="space-y-12 bg-[#ffe5d5] pb-12 xl:space-y-24"
+        className="space-y-12 bg-[#ffe5d5] xl:space-y-24 xl:pb-12"
       >
-        <div className="sm:polygon-clip mobile-clip h-screen overflow-hidden">
+        <div className="sm:polygon-clip mobile-clip min-h-screen overflow-hidden">
           <motion.div
             style={{ scale }}
             className="absolute h-screen w-full bg-[url('/qatar-img/qatar2.jpg')] bg-cover"
@@ -96,7 +96,7 @@ const QatarTravel = () => {
           </div>
         </div>
 
-        <div className="min-h-screen">
+        <div className="min-h-screen lg:h-full">
           <div className="pt-4 text-center uppercase text-black">
             <h1
               className={`${playfair.className} text-4xl font-medium tracking-widest`}
@@ -111,14 +111,14 @@ const QatarTravel = () => {
             </h1>
           </div>
 
-          <div className="flex w-full flex-col items-center justify-center gap-2 px-5 py-6 xl:flex-row xl:gap-7">
+          <div className="flex w-full flex-col items-center justify-center gap-2 py-6 lg:flex-row lg:gap-7 lg:px-5">
             <QatarImage src="/qatar-img/qatar3.jpg" width={250} height={350} />
             <QatarImage src="/qatar-img/qatar4.jpg" width={600} height={450} />
             <QatarImage src="/qatar-img/qatar5.jpg" width={350} height={350} />
           </div>
         </div>
 
-        <div className="relative z-0 h-screen w-full overflow-hidden">
+        <div className="relative z-0 min-h-screen w-full overflow-hidden">
           <div className="flex items-center justify-center gap-[1px]">
             {expandableImages.map((src, i) => (
               <DestinationImage
@@ -131,13 +131,16 @@ const QatarTravel = () => {
             ))}
           </div>
 
-          <div className="absolute bottom-16 right-0 z-10 text-black">
+          <div className="absolute bottom-16 right-1 z-10 text-black lg:right-0">
             <motion.h1
               ref={entertainmentRef}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 3 }}
-              className={cn("text-8xl", playfair.className)}
+              className={cn(
+                "text-4xl sm:text-7xl lg:text-8xl",
+                playfair.className,
+              )}
             >
               {"ENTERTAINMENT".split("").map((char, i) => (
                 <motion.span
@@ -176,54 +179,56 @@ const QatarTravel = () => {
               transition={{ ease: "easeIn", duration: 0.5, delay: 2 }}
               className="flex items-center gap-1 pt-2"
             >
-              <p className="cursor-pointer pl-2 text-lg underline underline-offset-2">
+              <p className="cursor-pointer pl-2 text-sm underline underline-offset-2 sm:text-lg">
                 Check all experiences
               </p>
-              <ArrowRight />
+              <ArrowRight className="size-5 sm:size-6" />
             </motion.div>
           </div>
         </div>
 
         <div
           ref={culturalRef}
-          className="relative hidden h-screen flex-col items-center xl:flex"
+          className="relative min-h-screen flex-col items-center lg:flex"
         >
           <motion.h1
             initial={{ opacity: 0 }}
             animate={culturalIsInView && { opacity: 1 }}
             transition={{ ease: "easeIn", duration: 0.5, delay: 1 }}
-            className={`${playfair.className} absolute top-5 z-10 text-center text-8xl uppercase text-black`}
+            className={`${playfair.className} static top-5 z-10 text-center text-5xl uppercase text-black lg:absolute lg:text-8xl`}
           >
             Cultural and historical tours
           </motion.h1>
 
-          <div className="absolute flex h-screen w-full items-center justify-center gap-16">
-            <div className="-mt-24">
+          <div className="static flex min-h-screen w-full flex-col items-center justify-center lg:absolute lg:flex-row lg:gap-16">
+            <div className="mt-5 lg:-mt-24">
               <QatarImage
                 src="/qatar-img/historical3.jpg"
                 width={300}
                 height={350}
               />
             </div>
-            <div className="pt-24">
+            <div className="lg:pt-24">
               <QatarImage
                 src="/qatar-img/historical2.jpg"
                 width={250}
                 height={350}
               />
             </div>
-            <QatarImage
-              src="/qatar-img/historical.jpg"
-              width={350}
-              height={350}
-            />
+            <div className="">
+              <QatarImage
+                src="/qatar-img/historical.jpg"
+                width={350}
+                height={350}
+              />
+            </div>
           </div>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ ease: "easeIn", duration: 0.5, delay: 1.5 }}
-            className="absolute bottom-0 flex w-full justify-center"
+            className="static bottom-44 flex w-full justify-center lg:absolute xl:bottom-0"
           >
             <Button
               className="border-black text-black hover:bg-black hover:text-white"
@@ -234,8 +239,8 @@ const QatarTravel = () => {
           </motion.div>
         </div>
 
-        <footer className="flex hidden w-full border border-black bg-transparent py-3 text-black">
-          <p className="mx-auto text-center leading-loose">
+        <footer className="flex w-full border-b border-t border-black bg-transparent py-3 text-black">
+          <p className="mx-auto text-center text-sm leading-loose lg:text-base">
             Copyright &copy; 2024 Design inspired by {``}
             <Link
               href="https://asoview.me/"
@@ -256,9 +261,10 @@ const QatarTravel = () => {
 };
 
 const Navbar = ({ nav }: { nav: boolean }) => {
+  console.log(nav);
   return (
     <nav
-      className={`sticky left-0 right-0 top-0 z-10 bg-[#ffe5d5] transition-transform duration-300 ${!nav && "-translate-y-full"}`}
+      className={`sticky left-0 right-0 top-0 z-20 bg-[#ffe5d5] transition-transform duration-300 ${!nav && "-translate-y-full"}`}
     >
       <ul className="z-20 flex w-full items-center justify-between px-5 py-3 text-black xl:px-20">
         <li className="font-bold">Zuhal Travel</li>

@@ -23,7 +23,7 @@ export default function QatarImage({
   useEffect(() => {
     const updateSize = () => {
       if (window.innerWidth <= 768) {
-        setResponsiveWidth(window.innerWidth * 0.9); // 90% of viewport width on small screens
+        setResponsiveWidth(window.innerWidth * 0.6); // 90% of viewport width on small screens
         setResponsiveHeight(window.innerHeight * 0.4); // 40% of viewport height on small screens
       } else if (window.innerWidth <= 1200) {
         setResponsiveWidth(width * 0.8); // 80% of the original width on medium screens
@@ -43,14 +43,14 @@ export default function QatarImage({
   return (
     <div
       ref={ref}
-      className={cn("relative overflow-hidden", className)}
+      className={cn("static overflow-hidden xl:relative", className)}
       style={{ width: `${responsiveWidth}px`, height: `${responsiveHeight}px` }}
     >
       <motion.div
         initial={{ opacity: 0, y: 0 }}
         animate={isInView ? { opacity: 1, y: -30 } : {}}
         transition={{ duration: 1, delay: 0.5 }}
-        className="absolute h-full w-full"
+        className="static h-full w-full xl:absolute"
       >
         <Image
           src={src}
