@@ -14,12 +14,6 @@ import {
 } from "lucide-react";
 
 import React, { useEffect, useRef, useState } from "react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./tooltip";
 
 const ModernCircularMenu = ({
   scroll,
@@ -27,14 +21,14 @@ const ModernCircularMenu = ({
   scroll: LocomotiveScroll | null;
 }) => {
   const menu = [
-    { name: "hero", icon: Home, color: "#ff2c2c" },
-    { name: "about", icon: User, color: "#f67731" },
-    { name: "gallery", icon: GalleryHorizontalEnd, color: "#edf12b" },
-    { name: "toolbox", icon: Wrench, color: "#92e926" },
-    { name: "portfolio", icon: Laptop, color: "#55ff49" },
-    { name: "experience", icon: BriefcaseBusiness, color: "#29dbb8" },
-    { name: "skill", icon: BicepsFlexed, color: "#473be5" },
-    { name: "contact", icon: Phone, color: "#e32fdf" },
+    { id: 0, name: "hero", icon: Home, color: "#ff2c2c" },
+    { id: 1, name: "about", icon: User, color: "#f67731" },
+    { id: 2, name: "gallery", icon: GalleryHorizontalEnd, color: "#edf12b" },
+    { id: 3, name: "toolbox", icon: Wrench, color: "#92e926" },
+    { id: 4, name: "portfolio", icon: Laptop, color: "#55ff49" },
+    { id: 5, name: "experience", icon: BriefcaseBusiness, color: "#29dbb8" },
+    { id: 6, name: "skill", icon: BicepsFlexed, color: "#473be5" },
+    { id: 7, name: "contact", icon: Phone, color: "#e32fdf" },
   ];
 
   const [isReadyToShow, setIsReadyToShow] = useState<boolean>(false);
@@ -137,6 +131,7 @@ const ModernCircularMenu = ({
     <motion.div
       drag
       dragElastic={0.3}
+      dragConstraints={{ bottom: 300 }}
       dragTransition={{
         power: 0.5,
         timeConstant: 200,
@@ -158,7 +153,7 @@ const ModernCircularMenu = ({
           return clampedX;
         },
       }}
-      className="absolute left-44 top-48 z-20 flex items-center justify-center"
+      className="absolute left-44 top-48 z-20 hidden items-center justify-center sm:flex"
     >
       <motion.span
         whileTap={{ rotate: 315 }}
@@ -185,46 +180,44 @@ const ModernCircularMenu = ({
           const colorClassName = `text-[${color}]`;
 
           return (
-            <>
-              <motion.li
-                key={i}
-                variants={menuVariants(
-                  i,
-                  color,
-                  angle,
-                  xClose,
-                  yClose,
-                  xOpen,
-                  yOpen,
-                )}
-                initial="state"
-                animate={[
-                  isReadyToShow ? "stateOpen" : "",
-                  isReadyToShow && isShow ? "open" : "",
-                ]}
-                exit={{ opacity: 0, x: 0, y: 0 }}
-                transition={{ duration: 0.3 }}
-                className={`group absolute z-20 flex cursor-pointer items-center justify-center overflow-hidden rounded-md border backdrop-blur`}
-                whileHover={
-                  isShow
-                    ? {
-                        backgroundColor: `${item.color}`,
-                        color: "black",
-                      }
-                    : {}
-                }
-                style={{
-                  boxShadow: `0 0 10px 1px ${item.color}`,
-                  border: `${item.color}`,
-                  color: `${item.color}`,
-                }}
-                onClick={() => handleOnClick(item.name)}
-              >
-                <item.icon
-                  className={`absolute z-10 -rotate-[405deg] ${colorClassName}`}
-                />
-              </motion.li>
-            </>
+            <motion.li
+              key={i}
+              variants={menuVariants(
+                i,
+                color,
+                angle,
+                xClose,
+                yClose,
+                xOpen,
+                yOpen,
+              )}
+              initial="state"
+              animate={[
+                isReadyToShow ? "stateOpen" : "",
+                isReadyToShow && isShow ? "open" : "",
+              ]}
+              exit={{ opacity: 0, x: 0, y: 0 }}
+              transition={{ duration: 0.3 }}
+              className={`group absolute z-20 flex cursor-pointer items-center justify-center overflow-hidden rounded-md border backdrop-blur`}
+              whileHover={
+                isShow
+                  ? {
+                      backgroundColor: `${item.color}`,
+                      color: "black",
+                    }
+                  : {}
+              }
+              style={{
+                boxShadow: `0 0 10px 1px ${item.color}`,
+                border: `${item.color}`,
+                color: `${item.color}`,
+              }}
+              onClick={() => handleOnClick(item.name)}
+            >
+              <item.icon
+                className={`absolute z-10 -rotate-[405deg] ${colorClassName}`}
+              />
+            </motion.li>
           );
         })}
       </motion.ul>

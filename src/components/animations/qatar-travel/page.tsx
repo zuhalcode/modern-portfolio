@@ -261,7 +261,6 @@ const QatarTravel = () => {
 };
 
 const Navbar = ({ nav }: { nav: boolean }) => {
-  console.log(nav);
   return (
     <nav
       className={`sticky left-0 right-0 top-0 z-20 bg-[#ffe5d5] transition-transform duration-300 ${!nav && "-translate-y-full"}`}

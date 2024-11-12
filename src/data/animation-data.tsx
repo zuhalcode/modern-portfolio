@@ -1,5 +1,6 @@
 import FloatingAnimationPage from "@/components/animations/float-animation";
 import QatarTravel from "@/components/animations/qatar-travel/page";
+import FloatingPage from "@/components/animations/test-component";
 import TestComponent from "@/components/animations/test-component";
 import { Metadata } from "next";
 
@@ -54,5 +55,25 @@ export const animationData: Animation[] = [
     imgAlt: "Qatar travel animation created by Zuhal",
     imgUrl: "qatar.png",
     component: <QatarTravel />,
+  },
+  {
+    label: "test",
+    title: "Qatar Travel",
+    description:
+      "Discover a float animation created with Framer Motion, featuring smooth interactions that enhance creativity and user experience using JavaScript techniques",
+    url: `${process.env.NEXT_PUBLIC_BASE_URL}/animations/qatar-travel`,
+    keywords: [
+      "zuhal",
+      "qatar",
+      "landingi",
+      "landing page",
+      "travel",
+      "travel terdekat",
+      "animasi",
+      "animation",
+    ],
+    imgAlt: "Qatar travel animation created by Zuhal",
+    imgUrl: "qatar.png",
+    component: <FloatingPage />,
   },
 ];

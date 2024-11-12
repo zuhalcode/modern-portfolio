@@ -15,6 +15,7 @@ import { useLocomotiveScroll } from "@/hooks/use-locomotive-scroll";
 import ModernCircularMenu from "@/components/ui/modern-circular-menu";
 
 import "locomotive-scroll/dist/locomotive-scroll.css";
+import { useEffect, useRef } from "react";
 
 export default function Home() {
   const { scrollInstance, scrollRef } = useLocomotiveScroll();
