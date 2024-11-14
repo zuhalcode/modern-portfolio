@@ -6,9 +6,6 @@ import { ArrowRight, Menu, Search } from "lucide-react";
 import { Playfair_Display } from "next/font/google";
 import { motion, useInView } from "framer-motion";
 
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import LocomotiveScroll from "locomotive-scroll";
 import QatarImage from "./qatar-image";
 import DestinationImage from "./destination-image";
 
@@ -18,8 +15,6 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useLocomotiveScroll } from "@/hooks/use-locomotive-scroll";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const playfair = Playfair_Display({
   weight: ["400", "500", "600", "700", "800", "900"],

@@ -22,7 +22,7 @@ const AnimationGallery = () => {
         <CardContent className="grid grid-cols-1 items-center justify-between gap-5 py-5 sm:grid-cols-2">
           {animationData.map(
             ({ label, title, imgUrl, imgAlt }, i) =>
-              i < animationData.length - 1 && (
+              i < animationData.length - 2 && (
                 <Link
                   key={i}
                   href={`/animations/${label}`}

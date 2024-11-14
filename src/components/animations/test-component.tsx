@@ -1,86 +1,138 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Button } from "../ui/button";
+import { useLocomotiveScroll } from "@/hooks/use-locomotive-scroll";
+import { cn } from "@/lib/utils";
+import { motion, useInView } from "framer-motion";
+import { Search } from "lucide-react";
+import { Playfair_Display } from "next/font/google";
+import { useEffect, useRef, useState } from "react";
+import QatarImage from "./qatar-travel/qatar-image";
 
-const navMenu: string[] = [
-  "home",
-  "about us",
-  "shop",
-  "specs",
-  "category",
-  "contact",
-];
-
-const Navbar = () => {
+const Navbar = ({ nav }: { nav: boolean }) => {
   return (
-    <nav>
-      <ul className="fixed z-20 flex w-full items-center justify-between text-black xl:px-20 xl:py-5">
-        <li className="text-2xl font-bold">Zuhal Dev</li>
-        {navMenu.map((menu, i) => (
-          <li className="cursor-pointer text-lg font-medium capitalize underline-offset-2 hover:underline lg:inline">
-            {menu}
-          </li>
-        ))}
+    <nav
+      className={`sticky left-0 right-0 top-0 z-20 bg-[#ffe5d5] transition-transform duration-300 ${!nav && "-translate-y-full"}`}
+    >
+      <ul className="flex w-full items-center justify-between px-5 py-3 text-black">
+        <li className="cursor-pointer text-lg font-bold">Zuhal Travel</li>
 
-        <Button
-          variant="outline"
-          className="hidden items-center rounded-full border border-black px-5 text-lg text-black lg:flex"
-        >
-          Buy Now
-        </Button>
+        <ul className="flex w-3/4 items-center justify-between text-black">
+          <li className="cursor-pointer text-sm font-medium capitalize hover:underline">
+            Appartment
+          </li>
+          <li className="cursor-pointer text-sm font-medium capitalize hover:underline">
+            Where to go
+          </li>
+          <li className="cursor-pointer text-sm font-medium capitalize hover:underline">
+            Contact Us
+          </li>
+          <li className="">Become a Host</li>
+        </ul>
       </ul>
     </nav>
   );
 };
 
-const FloatingPage = () => {
-  const text: string = "Hello";
-  const bgClasses: string[] = [
-    "bg-red-500 right-1/2",
-    "bg-blue-500",
-    "bg-cyan-500 left-1/2",
-  ];
+const playfair = Playfair_Display({
+  weight: ["400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+});
+
+const expandableImages: string[] = [
+  "/qatar-img/destination2.jpg",
+  "/qatar-img/destination.jpg",
+  "/qatar-img/destination3.jpg",
+  "/qatar-img/destination4.jpg",
+  "/qatar-img/destination5.jpg",
+];
+
+const QatarTravel = () => {
+  const [nav, setNav] = useState<boolean>(true);
+
+  const { scrollInstance, scrollRef } = useLocomotiveScroll();
+
+  const [scale, setScale] = useState<number>(1);
+  const [activeIndex, setActiveIndex] = useState<number>(4);
+
+  const entertainmentRef = useRef(null);
+  const entertainmentIsInView = useInView(entertainmentRef, { once: false });
+
+  const culturalRef = useRef(null);
+  const culturalIsInView = useInView(culturalRef, { once: false });
+
+  let lastScrollY = 0;
+
+  useEffect(() => {
+    scrollInstance?.on("scroll", (obj) => {
+      const currentScrollY = obj.scroll.y;
+      const newScale = 1 + currentScrollY / 500;
+      setScale(Math.min(newScale, 2));
+
+      if (currentScrollY > lastScrollY && currentScrollY > 50) setNav(false);
+      else setNav(true);
+
+      lastScrollY = currentScrollY;
+    });
+    return () => {
+      scrollInstance?.destroy();
+    };
+  }, [scrollInstance]);
+
   return (
-    <main className="h-screen bg-white">
-      <Navbar />
-
-      <div className="relative flex h-full w-full items-center justify-center">
-        {bgClasses.map((bg, i) => (
-          <div
-            key={i}
-            className={`absolute ${bg} z-0 h-48 w-40 rounded-full opacity-50 blur-3xl xl:h-[300px] xl:w-[400px]`}
+    <>
+      <Navbar nav={nav} />
+      <main ref={scrollRef} className="space-y-24 bg-[#ffe5d5] pb-12">
+        <div className="polygon-clip min-h-screen overflow-hidden">
+          <motion.div
+            style={{ scale }}
+            className="absolute h-screen w-full bg-[url('/qatar-img/qatar2.jpg')] bg-cover"
           />
-        ))}
 
-        <div className="absolute z-10 -mt-10 flex flex-col gap-3">
-          <div className="text-center">
-            {text.split("").map((letter, i) =>
-              letter === " " ? (
-                <span className="xl:inline" key={i}>
-                  &nbsp; &nbsp; &nbsp;
-                </span>
-              ) : (
-                <motion.span
-                  whileHover={{ y: -20 }}
-                  whileTap={{ y: -20 }}
-                  transition={{ duration: 0.2, ease: "easeInOut" }}
-                  key={i}
-                  className="inline-flex cursor-default select-none text-8xl font-bold uppercase tracking-widest text-slate-800"
-                >
-                  {letter}
-                </motion.span>
-              ),
-            )}
+          <div className="absolute m-3 ml-44 mt-10 space-y-5">
+            <h2 className="max-w-md text-5xl font-semibold">
+              Enjoy the moment while visiting Qatar
+            </h2>
+
+            <div className="flex items-center gap-3 rounded-md bg-white px-5 py-3 text-black shadow-lg">
+              <Search size={20} />
+              <input
+                type="text"
+                placeholder="Search Location"
+                className="w-96 text-sm outline-none placeholder:text-black"
+              />
+            </div>
           </div>
-          <p className="maxwsm mx-auto text-center font-medium text-slate-800 xl:max-w-xl xl:text-2xl">
-            I'm Zuhal, a web developer dedicated to creating modern innovative
-            and responsive websites.
-          </p>
         </div>
-      </div>
-    </main>
+
+        <div className="h-full min-h-screen">
+          <div className="pt-4 text-center uppercase text-black">
+            <h1
+              className={cn(
+                "text-4xl font-medium tracking-widest",
+                playfair.className,
+              )}
+            >
+              Featured
+            </h1>
+            <h1
+              className={cn(
+                "text-4xl font-medium tracking-widest",
+                playfair.className,
+              )}
+            >
+              In Qatar
+            </h1>
+          </div>
+
+          <div className="py6 flex w-full items-center justify-center gap-7 px-5 py-6">
+            <QatarImage src="/qatar-img/qatar3.jpg" width={250} height={350} />
+            <QatarImage src="/qatar-img/qatar4.jpg" width={600} height={450} />
+            <QatarImage src="/qatar-img/qatar5.jpg" width={350} height={350} />
+          </div>
+        </div>
+      </main>
+    </>
   );
 };
 
-export default FloatingPage;
+export default QatarTravel;
