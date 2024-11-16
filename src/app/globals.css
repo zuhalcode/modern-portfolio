@@ -176,3 +176,8 @@
 .hidden-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+.bg-custom {
+  background-size: 100vw 200vh !important;
+  background-position: right bottom !important;
+}

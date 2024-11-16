@@ -22,16 +22,19 @@ const data = [
     title: "Discover Qatar",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, dignissimos.",
     img: "/qatar-img/destination.jpg",
+    bgImg: "/qatar-v2-img/building.jpg",
   },
   {
     title: "Discover Qatar",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, dignissimos.",
     img: "/qatar-img/destination.jpg",
+    bgImg: "/qatar-v2-img/sunset.jpg",
   },
   {
     title: "Discover Qatar",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, dignissimos.",
     img: "/qatar-img/destination.jpg",
+    bgImg: "/qatar-v2-img/room.jpg",
   },
 ];
 
@@ -40,7 +43,11 @@ const QatarTravelV2 = () => {
 
   const [scale, setScale] = useState<number>(1);
   const [nav, setNav] = useState<boolean>(true);
+
   const [activeIndex, setActiveIndex] = useState<number>(data.length - 1);
+  const [previousIndex, setPreviousIndex] = useState<number>(data.length - 1);
+
+  const [hasChanged, setHasChanged] = useState<boolean>(false);
 
   const entertainmentRef = useRef(null);
   const entertainmentIsInView = useInView(entertainmentRef, { once: false });
@@ -52,8 +59,15 @@ const QatarTravelV2 = () => {
 
   const handleOnClick = (index: number) => {
     setActiveIndex(index);
-    console.log(`active ${activeIndex} === index ${index}`);
+    setPreviousIndex(activeIndex);
+    setHasChanged(true);
   };
+
+  const positions = [
+    { top: 88, right: 134 },
+    { top: 175, right: 134 },
+    { top: 263, right: 134 },
+  ];
 
   useEffect(() => {
     scrollInstance?.on("scroll", (obj) => {
@@ -74,13 +88,75 @@ const QatarTravelV2 = () => {
 
   return (
     <>
-      <main className="space-y-12 bg-[#ffe5d5] bg-[url('/qatar-v2-img/sunset.jpg')] bg-cover bg-center">
+      <main ref={scrollRef} className={`relative z-0 bg-[#ffe5d5]`}>
+        {/* Background Default */}
+        <motion.div
+          key={previousIndex} // Tetap menggunakan previousIndex untuk gambar latar belakang yang tetap
+          initial={{
+            opacity: 1,
+            width: "100vw",
+            height: "200vh",
+            top: 0,
+            right: 0,
+          }}
+          animate={{
+            opacity: 1, // Background tetap ada, tidak berubah
+          }}
+          transition={{ duration: 0.5 }} // Transisi yang sangat cepat
+          className="bg-custom absolute z-10 w-full bg-black"
+          style={{
+            backgroundImage: `url(${data[previousIndex].bgImg})`,
+          }}
+        />
+        {/* Default Bg Image */}
+
+        {/* Overlay Bg Image */}
+        <motion.div
+          key={activeIndex}
+          initial={
+            hasChanged
+              ? {
+                  borderRadius: 100,
+                  width: 100,
+                  height: 100,
+                  top: positions[activeIndex].top,
+                  right: positions[activeIndex].right,
+                }
+              : { opacity: 1 }
+          }
+          animate={
+            hasChanged
+              ? {
+                  borderRadius: [1000, 1000, 1000, 0],
+                  opacity: [0, 0.1, 0.2, 0.3, 1],
+                  width: "100vw",
+                  height: "200vh",
+                  top: [
+                    positions[activeIndex].top,
+                    positions[activeIndex].top - 100,
+                    0,
+                  ],
+                  right: [
+                    positions[activeIndex].right,
+                    positions[activeIndex].right - 100,
+                    0,
+                  ],
+                }
+              : {}
+          }
+          transition={{ duration: 0.5, ease: "easeIn" }}
+          className="bg-custom absolute z-20 h-[200vh] w-full bg-black"
+          style={{ background: `url(${data[activeIndex].bgImg})` }}
+        />
+        {/* Overlay Bg Image */}
+
         <Navbar />
-        <ul className="relative z-20 mx-auto flex w-3/4 flex-col items-end justify-end gap-10 outline-none">
+
+        <ul className="relative z-20 mx-auto mt-12 flex w-3/4 flex-col items-end justify-end gap-10 outline-none">
           {data.map((item, i) => (
             <motion.li
               key={i}
-              className="relative flex h-12 w-full cursor-pointer items-center justify-end"
+              className="relative flex h-12 w-full items-center justify-end"
             >
               <motion.div
                 onClick={() => handleOnClick(i)}
@@ -108,28 +184,46 @@ const QatarTravelV2 = () => {
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
                   alt=""
-                  className={`z-10 rounded-full border-[1.4px] border-white object-cover transition-all duration-300`}
+                  className={`z-10 cursor-pointer rounded-full border-[1.4px] border-white object-cover transition-all duration-300`}
                   style={{ scale: activeIndex === i ? 2 : 1 }}
                 />
               </motion.div>
 
               {activeIndex === i && (
-                <motion.div className="order-1 flex cursor-auto items-center gap-5 px-10">
-                  <span className="h-32 w-[6px] rounded-full bg-white" />
-                  <div className="max-w-sm space-y-3">
-                    <h1 className="text-4xl">{item.title}</h1>
-                    <p className="max-w-48 text-lg">{item.desc}</p>
-                  </div>
+                <div className="order-1 flex items-center gap-5 pr-8">
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.8 }}
+                    className="h-32 w-[6px] rounded-full bg-white"
+                  />
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.8 }}
+                    className="max-w-sm space-y-3"
+                  >
+                    <h1 className="text-3xl">{item.title}</h1>
+                    <p className="max-w-48 text-base font-normal">
+                      {item.desc}
+                    </p>
+                  </motion.div>
 
-                  <span className="h-[4px] w-12 rounded-full bg-white"></span>
-                </motion.div>
+                  <motion.span
+                    initial={{ opacity: 0, x: 100 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, ease: "easeOut", delay: 0.5 }}
+                    className="h-[4px] w-16 rounded-full bg-white"
+                  />
+                </div>
               )}
             </motion.li>
           ))}
         </ul>
+
         <div className="min-h-screen"></div>
 
-        <footer className="relative bottom-0 flex w-full border-b border-t border-black bg-transparent bg-white py-3 text-black">
+        <footer className="relative bottom-0 z-20 flex w-full border-b border-t border-black bg-transparent bg-white py-3 text-black">
           <p className="mx-auto text-center text-sm leading-loose lg:text-base">
             Copyright &copy; 2024 Design inspired by {``}
             <Link
