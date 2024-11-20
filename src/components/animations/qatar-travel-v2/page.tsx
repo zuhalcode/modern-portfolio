@@ -1,7 +1,18 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
-import { ArrowRight, Globe, Menu, Search, User } from "lucide-react";
+import {
+  ArrowRight,
+  Clock,
+  Globe,
+  Group,
+  Locate,
+  MapPin,
+  Menu,
+  Play,
+  Search,
+  User,
+} from "lucide-react";
 
 import { Playfair_Display } from "next/font/google";
 import { motion, useInView } from "framer-motion";
@@ -16,25 +27,103 @@ import Link from "next/link";
 import { useLocomotiveScroll } from "@/hooks/use-locomotive-scroll";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Image from "next/image";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { PositionPoint } from "@react-three/drei";
 
 const data = [
   {
     title: "Discover Qatar",
+    heading: "Explore qatar",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, dignissimos.",
     img: "/qatar-img/destination.jpg",
     bgImg: "/qatar-v2-img/building.jpg",
   },
   {
-    title: "Discover Qatar",
+    title: "Place to stay",
+    heading: "Find place to stay",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, dignissimos.",
-    img: "/qatar-img/destination.jpg",
-    bgImg: "/qatar-v2-img/sunset.jpg",
+    img: "/qatar-img/destination2.jpg",
+    bgImg: "/qatar-v2-img/room.jpg",
   },
   {
     title: "Discover Qatar",
+    heading: "Welcome to qatar",
     desc: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, dignissimos.",
-    img: "/qatar-img/destination.jpg",
-    bgImg: "/qatar-v2-img/room.jpg",
+    img: "/qatar-img/destination3.jpg",
+    bgImg: "/qatar-v2-img/sunset.jpg",
+  },
+];
+
+const searchBannerData = [
+  { title: "Qatar", desc: "Choose the destination", icon: Locate },
+  { title: "Check In", desc: "Add Date", icon: Clock },
+  { title: "Check Out", desc: "Add Date", icon: Clock },
+  { title: "Visitors", desc: "Add Guest", icon: Group },
+];
+
+const placeData = [
+  {
+    name: "Luxurious Pearl Villa",
+    location: "The Pearl, Daha",
+    rating: 4.8,
+    price: 1200,
+    img: "/qatar-v2-img/house.jpg",
+  },
+  {
+    name: "Sunset Bay Resort",
+    location: "Sunrise Beach, Maribu",
+    rating: 4.6,
+    price: 850,
+    img: "/qatar-v2-img/house2.jpg",
+  },
+  {
+    name: "Mountain Bliss Retreat",
+    location: "Highlands, Pura",
+    rating: 4.9,
+    price: 1500,
+    img: "/qatar-v2-img/house3.jpg",
+  },
+  {
+    name: "Ocean Breeze Hotel",
+    location: "Coastal Line, Sevilla",
+    rating: 4.7,
+    price: 950,
+    img: "/qatar-v2-img/house4.jpg",
+  },
+  {
+    name: "Urban Comfort Suites",
+    location: "City Center, Megapolis",
+    rating: 4.3,
+    price: 700,
+    img: "/qatar-v2-img/house5.jpg",
+  },
+  {
+    name: "Lakeview Serenity Cabin",
+    location: "Emerald Lake, Carintha",
+    rating: 4.8,
+    price: 1100,
+    img: "/qatar-v2-img/house6.jpg",
+  },
+  {
+    name: "Tropical Haven Villa",
+    location: "Paradise Island, Sumara",
+    rating: 4.5,
+    price: 1300,
+    img: "/qatar-v2-img/room2.jpg",
+  },
+  {
+    name: "Arctic Glow Chalet",
+    location: "Frostville, Northland",
+    rating: 4.9,
+    price: 1800,
+    img: "/qatar-v2-img/room3.jpg",
   },
 ];
 
@@ -48,12 +137,6 @@ const QatarTravelV2 = () => {
   const [previousIndex, setPreviousIndex] = useState<number>(data.length - 1);
 
   const [hasChanged, setHasChanged] = useState<boolean>(false);
-
-  const entertainmentRef = useRef(null);
-  const entertainmentIsInView = useInView(entertainmentRef, { once: false });
-
-  const culturalRef = useRef(null);
-  const culturalIsInView = useInView(culturalRef, { once: false });
 
   let lastScrollY = 0;
 
@@ -88,19 +171,18 @@ const QatarTravelV2 = () => {
 
   return (
     <>
-      <main ref={scrollRef} className={`relative z-0 bg-[#ffe5d5]`}>
-        {/* Background Default */}
+      <main ref={scrollRef} className={`relative z-0 overflow-hidden bg-black`}>
+        {/* Overlay Background Default */}
         <motion.div
-          key={previousIndex} // Tetap menggunakan previousIndex untuk gambar latar belakang yang tetap
+          key={previousIndex}
           initial={{
             opacity: 1,
-            width: "100vw",
-            height: "200vh",
+            backgroundRepeat: "no-repeat",
             top: 0,
             right: 0,
           }}
           animate={{
-            opacity: 1, // Background tetap ada, tidak berubah
+            opacity: 1,
           }}
           transition={{ duration: 0.5 }} // Transisi yang sangat cepat
           className="bg-custom absolute z-10 w-full bg-black"
@@ -108,7 +190,7 @@ const QatarTravelV2 = () => {
             backgroundImage: `url(${data[previousIndex].bgImg})`,
           }}
         />
-        {/* Default Bg Image */}
+        {/* Overlay Default Bg Image */}
 
         {/* Overlay Bg Image */}
         <motion.div
@@ -133,12 +215,12 @@ const QatarTravelV2 = () => {
                   height: "200vh",
                   top: [
                     positions[activeIndex].top,
-                    positions[activeIndex].top - 100,
+                    positions[activeIndex].top - 200,
                     0,
                   ],
                   right: [
                     positions[activeIndex].right,
-                    positions[activeIndex].right - 100,
+                    positions[activeIndex].right - 200,
                     0,
                   ],
                 }
@@ -150,6 +232,32 @@ const QatarTravelV2 = () => {
         />
         {/* Overlay Bg Image */}
 
+        {/* Overlay Heading */}
+        <motion.h1
+          initial={{ top: "4rem", opacity: 0 }}
+          animate={{ top: "5rem", opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="absolute left-10 top-20 z-20 inline-block bg-gradient-to-b from-white to-yellow-700 bg-clip-text text-7xl font-bold uppercase text-transparent"
+        >
+          {data[activeIndex].heading}
+        </motion.h1>
+        {/* Overlay Heading */}
+
+        {/* Overlay Cloud */}
+        <motion.div
+          initial={{ left: -800, opacity: 0.5 }}
+          animate={{ left: -200, opacity: 0.9 }}
+          transition={{ duration: 10, ease: "easeIn" }}
+          style={{
+            background: `url("/qatar-v2-img/cloud.png")`,
+            backgroundSize: "120vw 100vh",
+            backgroundRepeat: "no-repeat",
+          }}
+          className="absolute inset-0 top-52 z-20"
+        />
+        {/* Overlay Cloud */}
+
         <Navbar />
 
         <ul className="relative z-20 mx-auto mt-12 flex w-3/4 flex-col items-end justify-end gap-10 outline-none">
@@ -159,6 +267,9 @@ const QatarTravelV2 = () => {
               className="relative flex h-12 w-full items-center justify-end"
             >
               <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.7 }}
                 onClick={() => handleOnClick(i)}
                 className="relative order-2 h-12 w-12"
               >
@@ -184,7 +295,7 @@ const QatarTravelV2 = () => {
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 100vw"
                   alt=""
-                  className={`z-10 cursor-pointer rounded-full border-[1.4px] border-white object-cover transition-all duration-300`}
+                  className={`z-30 cursor-pointer rounded-full border-[1.4px] border-white object-cover transition-all duration-300`}
                   style={{ scale: activeIndex === i ? 2 : 1 }}
                 />
               </motion.div>
@@ -221,9 +332,78 @@ const QatarTravelV2 = () => {
           ))}
         </ul>
 
-        <div className="min-h-screen"></div>
+        <div className="mt-36">
+          {/* Search Bar */}
+          <div className="relative z-30 mx-auto w-10/12 rounded-[2rem] bg-white shadow-lg">
+            <ul className="flex items-center justify-between px-16 py-5">
+              {searchBannerData.map((data, i) => (
+                <li key={i} className="space-y-2 text-black">
+                  <div className="flex items-center gap-3">
+                    <data.icon size={26} className="text-slate-700" />
+                    <span className="text-xl font-semibold">{data.title}</span>
+                  </div>
+                  <p className="pl-10 text-base">{data.desc}</p>
+                </li>
+              ))}
+              <li className="flex h-12 w-12 items-center justify-center rounded-xl bg-black text-white">
+                <Play />
+              </li>
+            </ul>
+          </div>
+          {/* Search Bar */}
+        </div>
 
-        <footer className="relative bottom-0 z-20 flex w-full border-b border-t border-black bg-transparent bg-white py-3 text-black">
+        <div className="relative z-20 mx-auto min-h-screen w-10/12 py-10">
+          <div className="flex items-center justify-between">
+            <h1 className="py-16 text-3xl font-bold text-white">
+              Recommended Places to Stay
+            </h1>
+
+            <Button
+              variant="outline"
+              className="rounded-full border-white font-medium text-white"
+            >
+              See All
+            </Button>
+          </div>
+
+          <ul className="grid h-full w-full grid-cols-4 gap-7">
+            {placeData.map(({ name, price, location, rating, img }) => (
+              <motion.li whileTap={{ scale: 0.8 }} className="cursor-pointer">
+                <Card
+                  className="relative flex flex-col justify-between gap-44 overflow-hidden border-none px-0 py-2"
+                  style={{
+                    background: `url(${img})`,
+                    backgroundPosition: "center",
+                    backgroundSize: "cover",
+                  }}
+                >
+                  <div className="absolute inset-0 z-0 bg-black bg-opacity-50" />
+
+                  <CardContent className="relative z-10 px-2">
+                    <div className="flex items-center justify-between">
+                      <p className="w-fit rounded-lg bg-white px-2 py-2">
+                        ${price} / night
+                      </p>
+                      <Search size={32} className="rounded-full bg-white p-2" />
+                    </div>
+                  </CardContent>
+
+                  <CardFooter className="relative z-10 flex-col items-start gap-2 p-0 px-2">
+                    <p className="text-lg font-medium text-white">{name}</p>
+                    <p className="flex gap-1 text-white">
+                      <MapPin />
+                      {location}
+                    </p>
+                    <p className="text-white">{rating}</p>
+                  </CardFooter>
+                </Card>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+
+        <footer className="relative bottom-0 z-20 mt-10 flex w-full border-b border-t border-black bg-transparent bg-white py-3 text-black">
           <p className="mx-auto text-center text-sm leading-loose lg:text-base">
             Copyright &copy; 2024 Design inspired by {``}
             <Link
