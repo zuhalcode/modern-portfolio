@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
-  ArrowRight,
   Clock,
   Globe,
   Group,
@@ -14,28 +13,15 @@ import {
   User,
 } from "lucide-react";
 
-import { Playfair_Display } from "next/font/google";
-import { motion, useInView } from "framer-motion";
-
-import QatarImage from "./qatar-image";
-import DestinationImage from "./destination-image";
+import { motion } from "framer-motion";
 
 import "locomotive-scroll/dist/locomotive-scroll.css";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useLocomotiveScroll } from "@/hooks/use-locomotive-scroll";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Image from "next/image";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { PositionPoint } from "@react-three/drei";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 
 const data = [
   {
@@ -70,6 +56,7 @@ const searchBannerData = [
 
 const placeData = [
   {
+    id: 1,
     name: "Luxurious Pearl Villa",
     location: "The Pearl, Daha",
     rating: 4.8,
@@ -77,6 +64,7 @@ const placeData = [
     img: "/qatar-v2-img/house.jpg",
   },
   {
+    id: 2,
     name: "Sunset Bay Resort",
     location: "Sunrise Beach, Maribu",
     rating: 4.6,
@@ -84,6 +72,7 @@ const placeData = [
     img: "/qatar-v2-img/house2.jpg",
   },
   {
+    id: 3,
     name: "Mountain Bliss Retreat",
     location: "Highlands, Pura",
     rating: 4.9,
@@ -91,6 +80,7 @@ const placeData = [
     img: "/qatar-v2-img/house3.jpg",
   },
   {
+    id: 4,
     name: "Ocean Breeze Hotel",
     location: "Coastal Line, Sevilla",
     rating: 4.7,
@@ -98,6 +88,7 @@ const placeData = [
     img: "/qatar-v2-img/house4.jpg",
   },
   {
+    id: 5,
     name: "Urban Comfort Suites",
     location: "City Center, Megapolis",
     rating: 4.3,
@@ -105,6 +96,7 @@ const placeData = [
     img: "/qatar-v2-img/house5.jpg",
   },
   {
+    id: 6,
     name: "Lakeview Serenity Cabin",
     location: "Emerald Lake, Carintha",
     rating: 4.8,
@@ -112,6 +104,7 @@ const placeData = [
     img: "/qatar-v2-img/house6.jpg",
   },
   {
+    id: 7,
     name: "Tropical Haven Villa",
     location: "Paradise Island, Sumara",
     rating: 4.5,
@@ -119,6 +112,7 @@ const placeData = [
     img: "/qatar-v2-img/room2.jpg",
   },
   {
+    id: 8,
     name: "Arctic Glow Chalet",
     location: "Frostville, Northland",
     rating: 4.9,
@@ -130,8 +124,7 @@ const placeData = [
 const QatarTravelV2 = () => {
   const { scrollRef, scrollInstance } = useLocomotiveScroll();
 
-  const [scale, setScale] = useState<number>(1);
-  const [nav, setNav] = useState<boolean>(true);
+  const [isDesktop, setIsDesktop] = useState<boolean>(true);
 
   const [activeIndex, setActiveIndex] = useState<number>(data.length - 1);
   const [previousIndex, setPreviousIndex] = useState<number>(data.length - 1);
@@ -153,24 +146,34 @@ const QatarTravelV2 = () => {
   ];
 
   useEffect(() => {
-    scrollInstance?.on("scroll", (obj) => {
-      const currentScrollY = obj.scroll.y;
-
-      const newScale = 1 + currentScrollY / 500;
-      setScale(Math.min(newScale, 2));
-
-      if (currentScrollY > lastScrollY && currentScrollY > 50) setNav(false);
-      else setNav(true);
-      lastScrollY = currentScrollY;
-    });
-
-    return () => {
-      scrollInstance?.destroy();
+    const checkIfDesktop = () => {
+      if (window.innerWidth >= 768) {
+        setIsDesktop(true);
+      } else {
+        setIsDesktop(false);
+      }
     };
-  }, [scrollInstance]);
+
+    // Memanggil checkIfDesktop saat komponen pertama kali dimuat dan ketika ukuran layar berubah
+    checkIfDesktop();
+    window.addEventListener("resize", checkIfDesktop);
+
+    // Menghapus event listener saat komponen di-unmount
+    return () => {
+      window.removeEventListener("resize", checkIfDesktop);
+    };
+  }, []);
 
   return (
     <>
+      {isDesktop && (
+        <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <p className="text-xl text-white">
+            This content is available on desktop version only!
+          </p>
+        </div>
+      )}
+
       <main ref={scrollRef} className={`relative z-0 overflow-hidden bg-black`}>
         {/* Overlay Background Default */}
         <motion.div
@@ -368,36 +371,41 @@ const QatarTravelV2 = () => {
           </div>
 
           <ul className="grid h-full w-full grid-cols-4 gap-7">
-            {placeData.map(({ name, price, location, rating, img }) => (
+            {placeData.map(({ id, name, price, location, rating, img }) => (
               <motion.li whileTap={{ scale: 0.8 }} className="cursor-pointer">
-                <Card
-                  className="relative flex flex-col justify-between gap-44 overflow-hidden border-none px-0 py-2"
-                  style={{
-                    background: `url(${img})`,
-                    backgroundPosition: "center",
-                    backgroundSize: "cover",
-                  }}
-                >
-                  <div className="absolute inset-0 z-0 bg-black bg-opacity-50" />
+                <Link href={`/animations/qatar-travel-v2/places?id=${id}`}>
+                  <Card
+                    className="relative flex flex-col justify-between gap-44 overflow-hidden border-none px-0 py-2"
+                    style={{
+                      background: `url(${img})`,
+                      backgroundPosition: "center",
+                      backgroundSize: "cover",
+                    }}
+                  >
+                    <div className="absolute inset-0 z-0 bg-black bg-opacity-50" />
 
-                  <CardContent className="relative z-10 px-2">
-                    <div className="flex items-center justify-between">
-                      <p className="w-fit rounded-lg bg-white px-2 py-2">
-                        ${price} / night
+                    <CardContent className="relative z-10 px-2">
+                      <div className="flex items-center justify-between">
+                        <p className="w-fit rounded-lg bg-white px-2 py-2">
+                          ${price} / night
+                        </p>
+                        <Search
+                          size={32}
+                          className="rounded-full bg-white p-2"
+                        />
+                      </div>
+                    </CardContent>
+
+                    <CardFooter className="relative z-10 flex-col items-start gap-2 p-0 px-2">
+                      <p className="text-lg font-medium text-white">{name}</p>
+                      <p className="flex gap-1 text-white">
+                        <MapPin />
+                        {location}
                       </p>
-                      <Search size={32} className="rounded-full bg-white p-2" />
-                    </div>
-                  </CardContent>
-
-                  <CardFooter className="relative z-10 flex-col items-start gap-2 p-0 px-2">
-                    <p className="text-lg font-medium text-white">{name}</p>
-                    <p className="flex gap-1 text-white">
-                      <MapPin />
-                      {location}
-                    </p>
-                    <p className="text-white">{rating}</p>
-                  </CardFooter>
-                </Card>
+                      <p className="text-white">{rating}</p>
+                    </CardFooter>
+                  </Card>
+                </Link>
               </motion.li>
             ))}
           </ul>
